@@ -1,0 +1,16 @@
+.NavBarMain {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 2rem;
+    background-color: #f0f0f0;
+
+
+}
+
+.NavbarContainer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+
+}
