@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
+import { useSelector } from "react-redux";
 import {
   Container,
   Box,
@@ -18,6 +19,7 @@ import "./Shop.css";
 
 export function NavBar() {
   const [open, setOpen] = useState(false);
+
 
   const handleClickOpen = () => {
     setOpen(true);
@@ -75,6 +77,7 @@ export function NavBar() {
                 cursor: "pointer",
               }}
               onClick={handleClickOpen}
+              title="Open shopping cart"
             />
           </Box>
         </Container>
@@ -86,14 +89,23 @@ export function NavBar() {
               sx={{
                 width: "100%",
                 display: "flex",
+                flexDirection: "column",
                 justifyContent: "space-between",
               }}
             >
-              <Typography variant="h5">My Shopping Cart</Typography>
+              <Box
+                sx={{
+                  display: "flex",
+                  flexDirection: "row",
+                  justifyContent: "space-between",
+                }}
+              >
+                <Typography variant="h5">My Shopping Cart</Typography>
 
-              <Button sx={{ color: "black" }} onClick={handleClose}>
-                X
-              </Button>
+                <Button sx={{ color: "black" }} onClick={handleClose}>
+                  X
+                </Button>
+              </Box>
             </Box>
           </DialogTitle>
           <DialogContent>

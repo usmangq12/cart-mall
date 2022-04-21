@@ -1,22 +1,23 @@
 import { useState, useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
 import { Typography } from "@mui/material";
 import { Box } from "@mui/system";
 import List from "@mui/material/List";
 import ListItem from "@mui/material/ListItem";
 import ListItemButton from "@mui/material/ListItemButton";
 import ListItemText from "@mui/material/ListItemText";
-import axios from "axios";
+
+import { GET_CATEOGARIES_LIST } from "./shopping redux/Actions";
 
 export function ProductDetails() {
-  const [products, setProducts] = useState([]);
+  const dispatch = useDispatch();
+
+  const categories = useSelector((state) => state.cateogaryReducer.List);
+  console.log(categories);
 
   useEffect(() => {
-    axios.get("https://backendapi.turing.com/products").then((res) => {
-      setProducts(res.data.rows);
-    });
+    dispatch({ type: GET_CATEOGARIES_LIST });
   }, []);
-
-  console.log(products);
 
   return (
     <>
@@ -129,6 +130,13 @@ export function ProductDetails() {
           Add Reviews
         </Box>
       </Box>
+      {categories.map((item) => (
+        <ListItem>
+          <ListItemButton>
+            <ListItemText primary={item.name} />
+          </ListItemButton>
+        </ListItem>
+      ))}
     </>
   );
 }
