@@ -1,16 +1,23 @@
-import React from "react";
+import { useDispatch } from "react-redux";
+import { Box, Container, ListItemButton, ListItemText } from "@mui/material";
+
+import { ProductsListing } from "./ProductsListing";
+
 import {
-  Box,
-  Container,
-  List,
-  ListItemButton,
-  ListItemText,
-} from "@mui/material";
-import { Link } from "react-router-dom";
+  GET_PRODUCTS_LIST,
+  GET_PRODUCTS_LIST_ITALIAN,
+  GET_PRODUCTS_LIST_IRISH,
+  GET_PRODUCTS_LIST_ANIMAL,
+  GET_PRODUCTS_LIST_FLOWER,
+  GET_PRODUCTS_LIST_CHRISTMAS,
+  GET_PRODUCTS_LIST_VALENTINES,
+} from "../shopping redux/Actions";
 
 export default function Homepage() {
+  const dispatch = useDispatch();
+
   return (
-    <div>
+    <Box>
       <Container
         sx={{
           display: "flex",
@@ -19,64 +26,64 @@ export default function Homepage() {
       >
         <Box
           sx={{
-            margin: "1%",
             width: "20%",
-            height: "90vh",
+            height: "100vh",
             display: "flex",
             flexDirection: "column",
           }}
         >
-          <List>
-            <ListItemButton>
-              <ListItemText>
-                <Link to="/productdetails" style={{ textDecoration: "none" }}>
-                  Men
-                </Link>
-              </ListItemText>
-            </ListItemButton>
-
-            <ListItemButton>
-              <ListItemText>
-                <Link to="/productdetails" style={{ textDecoration: "none" }}>
-                  Women
-                </Link>{" "}
-              </ListItemText>
-            </ListItemButton>
-
-            <ListItemButton>
-              <ListItemText>
-                <Link to="/productdetails" style={{ textDecoration: "none" }}>
-                  Children
-                </Link>{" "}
-              </ListItemText>
-            </ListItemButton>
-
-            <ListItemButton>
-              <ListItemText>a</ListItemText>
-            </ListItemButton>
-
-            <ListItemButton>
-              <ListItemText>b</ListItemText>
-            </ListItemButton>
-
-            <ListItemButton>
-              <ListItemText>b</ListItemText>
-            </ListItemButton>
-
-            <ListItemButton>
-              <ListItemText>c</ListItemText>
-            </ListItemButton>
-
-            <ListItemButton>
-              <ListItemText>d</ListItemText>
-            </ListItemButton>
-
-            <ListItemButton>
-              <ListItemText>e</ListItemText>
-            </ListItemButton>
-          </List>
+          <ListItemButton
+            onClick={() => {
+              dispatch({ type: GET_PRODUCTS_LIST });
+            }}
+          >
+            <ListItemText primary={"French"} />
+          </ListItemButton>
+          <ListItemButton
+            onClick={() => {
+              dispatch({ type: GET_PRODUCTS_LIST_ITALIAN });
+            }}
+          >
+            <ListItemText primary={"Italian"} />
+          </ListItemButton>
+          <ListItemButton
+            onClick={() => {
+              dispatch({ type: GET_PRODUCTS_LIST_IRISH });
+            }}
+          >
+            <ListItemText primary={"Irish"} />
+          </ListItemButton>
+          <ListItemButton
+            onClick={() => {
+              dispatch({ type: GET_PRODUCTS_LIST_ANIMAL });
+            }}
+          >
+            <ListItemText primary={"Animal"} />
+          </ListItemButton>
+          <ListItemButton
+            onClick={() => {
+              dispatch({ type: GET_PRODUCTS_LIST_FLOWER });
+            }}
+          >
+            <ListItemText primary={"Flower"} />
+          </ListItemButton>
+          <ListItemButton
+            onClick={() => {
+              dispatch({ type: GET_PRODUCTS_LIST_CHRISTMAS });
+            }}
+          >
+            <ListItemText primary={"Christmas"} />
+          </ListItemButton>
+          <ListItemButton
+            onClick={() => {
+              dispatch({ type: GET_PRODUCTS_LIST_VALENTINES });
+            }}
+          >
+            <ListItemText primary={"Valentine's"} />
+          </ListItemButton>
         </Box>
+        <ProductsListing />
       </Container>
-    </div>
+    </Box>
   );
 }
