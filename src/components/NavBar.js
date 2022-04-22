@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import { useSelector } from "react-redux";
+
 import {
   Container,
   Box,
@@ -15,11 +16,11 @@ import {
 import { FiShoppingCart } from "react-icons/fi";
 import { SiShopware } from "react-icons/si";
 import { ProductDetails } from "./ProductDetails";
+import Homepage from "./Homepage/homepage";
 import "./Shop.css";
 
 export function NavBar() {
   const [open, setOpen] = useState(false);
-
 
   const handleClickOpen = () => {
     setOpen(true);
@@ -133,7 +134,8 @@ export function NavBar() {
           </Button>
         </Box>
       </Dialog>
-      <ProductDetails />
+      <Homepage />
+      {/* <ProductDetails /> */}
     </>
   );
 }
