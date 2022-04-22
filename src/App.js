@@ -1,6 +1,7 @@
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import { NavBar } from "./components/NavBar";
 import { ShippingDetails } from "./components/Shipping Details";
+import { ProductDetails } from "./components/ProductDetails";
 
 function App() {
   return (
@@ -8,6 +9,8 @@ function App() {
       <Routes>
         <Route path="/" element={<NavBar />} />
         <Route path="shippingdetails" element={<ShippingDetails />} />
+        <Route path="productdetails" element={<ProductDetails />} />
+
       </Routes>
     </Router>
   );

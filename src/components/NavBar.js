@@ -14,6 +14,7 @@ import {
 import { FiShoppingCart } from "react-icons/fi";
 import { SiShopware } from "react-icons/si";
 import { ProductDetails } from "./ProductDetails";
+import Homepage from "./Homepage/homepage.js";
 import "./Shop.css";
 
 export function NavBar() {
@@ -121,6 +122,7 @@ export function NavBar() {
           </Button>
         </Box>
       </Dialog>
+      <Homepage />
       <ProductDetails />
     </>
   );
