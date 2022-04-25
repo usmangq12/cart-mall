@@ -7,7 +7,6 @@ export function ServiceApi() {
         `
     )
     .then((response) => {
-      // console.log(response.data.rows);
       return response.data.rows;
     });
 }
@@ -19,7 +18,6 @@ export function GetProducts() {
         `
     )
     .then((response) => {
-      console.log(response.data.rows);
       return response.data.rows;
     });
 }
@@ -32,7 +30,6 @@ export function GetProductsItalian() {
         `
     )
     .then((response) => {
-      console.log(response.data.rows);
       return response.data.rows;
     });
 }
@@ -45,7 +42,6 @@ export function GetProductsIRISH() {
         `
     )
     .then((response) => {
-      console.log(response.data.rows);
       return response.data.rows;
     });
 }
@@ -58,7 +54,6 @@ export function GetProductsAnimal() {
         `
     )
     .then((response) => {
-      console.log(response.data.rows);
       return response.data.rows;
     });
 }
@@ -71,7 +66,6 @@ export function GetProductsFlower() {
         `
     )
     .then((response) => {
-      console.log(response.data.rows);
       return response.data.rows;
     });
 }
@@ -84,7 +78,6 @@ export function GetProductsChristmas() {
         `
     )
     .then((response) => {
-      console.log(response.data.rows);
       return response.data.rows;
     });
 }
@@ -97,9 +90,6 @@ export function GetProductsValentines() {
         `
     )
     .then((response) => {
-      console.log(response.data.rows);
       return response.data.rows;
     });
 }
-
-
