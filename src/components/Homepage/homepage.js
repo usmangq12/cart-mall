@@ -12,6 +12,7 @@ import {
   GET_PRODUCTS_LIST_CHRISTMAS,
   GET_PRODUCTS_LIST_VALENTINES,
 } from "../shopping redux/Actions";
+import { ProductDetails } from "../ProductDetails";
 
 export default function Homepage() {
   const dispatch = useDispatch();
@@ -82,7 +83,6 @@ export default function Homepage() {
             <ListItemText primary={"Valentine's"} />
           </ListItemButton>
         </Box>
-        {/* <ProductsListing /> */}
       </Container>
     </Box>
   );
