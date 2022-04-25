@@ -1,11 +1,9 @@
-
 import { combineReducers } from "redux";
 
-import cateogaryReducer from "./Reducers";
+import { cateogaryReducer, productsReducer } from "./Reducers";
 
 const rootReducer = combineReducers({
-    cateogaryReducer,
+  productsReducer,
 });
-
 
 export default rootReducer;

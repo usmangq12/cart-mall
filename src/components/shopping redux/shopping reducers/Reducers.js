@@ -1,20 +1,57 @@
-import { SET_CATEOGARIES_LIST } from "../Actions";
+import {
+  SET_PRODUCTS_LIST,
+  SET_PRODUCTS_LIST_ITALIAN,
+  SET_PRODUCTS_LIST_IRISH,
+  SET_PRODUCTS_LIST_ANIMAL,
+  SET_PRODUCTS_LIST_FLOWER,
+  SET_PRODUCTS_LIST_CHRISTMAS,
+  SET_PRODUCTS_LIST_VALENTINES,
+} from "../Actions";
 
-const initialState = {
-  List: [],
+const productState = {
+  Products: [],
 };
 
-const cateogaryReducer = (state = initialState, action) => {
+export function productsReducer(state = productState, action) {
+  console.log("action:", action);
   switch (action.type) {
-    case SET_CATEOGARIES_LIST:
+    case SET_PRODUCTS_LIST:
       return {
         ...state,
-        List: action.payload,
+        Products: action.payload,
       };
+    case SET_PRODUCTS_LIST_ITALIAN:
+      return {
+        ...state,
+        Products: action.payload,
+      };
+    case SET_PRODUCTS_LIST_IRISH:
+      return {
+        ...state,
+        Products: action.payload,
+      };
+    case SET_PRODUCTS_LIST_ANIMAL:
+      return {
+        ...state,
+        Products: action.payload,
+      };
+    case SET_PRODUCTS_LIST_FLOWER:
+      return {
+        ...state,
+        Products: action.payload,
+      };
+    case SET_PRODUCTS_LIST_CHRISTMAS:
+      return {
+        ...state,
+        Products: action.payload,
+      };
+    case SET_PRODUCTS_LIST_VALENTINES:
+      return {
+        ...state,
+        Products: action.payload,
+      };
+
     default:
       return state;
   }
-};
-
-
-export default cateogaryReducer;
+}
