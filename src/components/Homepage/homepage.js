@@ -82,7 +82,7 @@ export default function Homepage() {
             <ListItemText primary={"Valentine's"} />
           </ListItemButton>
         </Box>
-        <ProductsListing />
+        {/* <ProductsListing /> */}
       </Container>
     </Box>
   );

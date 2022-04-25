@@ -1,25 +1,11 @@
-import { useState, useEffect } from "react";
 import { Box } from "@mui/material";
 import { Link } from "react-router-dom";
-import axios from "axios";
 import { useSelector } from "react-redux";
 
-export function ProductsListing() {
-  //   const [products, setProducts] = useState([]);
-
-  //   useEffect(() => {
-  //     axios
-  //       .get(
-  //         "https://backendapi.turing.com/products/inCategory/2?page=1&limit=50"
-  //       )
-  //       .then((response) => {
-  //         console.log(response.data.rows);
-  //         setProducts(response.data.rows);
-  //       });
-  //   }, []);
-
+export function ProductsListing(props) {
+  const { SearchedProducts } = props;
   const products = useSelector((state) => state.productsReducer.Products);
-  console.log(products);
+  // console.log(products);
 
   return (
     <Box
@@ -47,7 +33,6 @@ export function ProductsListing() {
             key={product.product_id}
           >
             <Box>
-              {/* <img src={product.thumbnail} /> */}
 
               <Box>
                 <Box>{product.name}</Box>
