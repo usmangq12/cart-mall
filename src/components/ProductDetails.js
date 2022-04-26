@@ -41,9 +41,14 @@ export function ProductDetails() {
       <Box sx={{ display: "flex", flexWrap: "wrap", marginTop: "20px" }}>
         <Box
           component={"img"}
-          sx={{ width: "35%", height: "500px", marginLeft: "2rem" }}
+          sx={{
+            width: "35%",
+            height: "500px",
+            marginLeft: "2rem",
+            borderRadius: "10px",
+          }}
           src="
-          https://cdn.shopify.com/s/files/1/0104/5757/9583/products/OSCO-Men-Dress-Shoes-Men-Formal-Shoes-Leather-Luxury-Fashion-Wedding-Shoes-Men-Business-Casual-Oxford.jpg?v=1575045878"
+          https://freepngimg.com/thumb/categories/627.png"
         />
 
         <Box
@@ -54,6 +59,7 @@ export function ProductDetails() {
             width: "50%",
             height: "500px",
             border: "1px solid black",
+            borderRadius: "10px",
           }}
         >
           <Typography
