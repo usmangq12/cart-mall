@@ -1,6 +1,5 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
-import { ProductsListing } from "./Homepage/ProductsListing";
 import {
   Container,
   Box,
@@ -11,6 +10,11 @@ import {
   DialogContent,
   DialogContentText,
   DialogTitle,
+  Table,
+  TableRow,
+  TableHead,
+  TableCell,
+  TableBody,
 } from "@mui/material";
 import { FiShoppingCart } from "react-icons/fi";
 import { SiShopware } from "react-icons/si";
@@ -21,6 +25,7 @@ import "./Shop.css";
 export function NavBar() {
   const [open, setOpen] = useState(false);
   const [searchValue, setSearchValue] = useState("");
+  const [getProducts, setGetProducts] = useState([]);
 
   const handleClickOpen = () => {
     setOpen(true);
@@ -31,9 +36,10 @@ export function NavBar() {
   };
 
   const products = useSelector((state) => state.productsReducer.Products);
-  console.log(products);
 
-  let SearchedProducts = [];
+  useEffect(() => {
+    setGetProducts(products);
+  }, [products]);
 
   const handleSearch = () => {
     let newArray = products.filter(function (getInnerValue) {
@@ -52,8 +58,7 @@ export function NavBar() {
       }
     });
 
-    SearchedProducts = newArray;
-    console.log(SearchedProducts);
+    setGetProducts(newArray);
   };
 
   return (
@@ -106,7 +111,24 @@ export function NavBar() {
             </Box>
           </DialogTitle>
           <DialogContent>
-            <DialogContentText></DialogContentText>
+            <Table>
+              <TableHead>
+                <TableRow>
+                  <TableCell>Sr. No.</TableCell>
+                  <TableCell>Product Name</TableCell>
+                  <TableCell>Product Price</TableCell>
+                </TableRow>
+              </TableHead>
+              <TableBody>
+                {getProducts.map((product, index) => (
+                  <TableRow key={index}>
+                    <TableCell>{index + 1}</TableCell>
+                    <TableCell>{product.name}</TableCell>
+                    <TableCell>$ {product.price}</TableCell>
+                  </TableRow>
+                ))}
+              </TableBody>
+            </Table>
           </DialogContent>
         </Box>
 
@@ -122,7 +144,7 @@ export function NavBar() {
         </Box>
       </Dialog>
 
-      <Homepage />
+      <Homepage getProducts={getProducts} />
     </>
   );
 }
