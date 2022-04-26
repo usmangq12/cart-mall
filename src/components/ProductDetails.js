@@ -16,6 +16,11 @@ import { useState, useEffect } from "react";
 
 export function ProductDetails() {
   const [open, setOpen] = useState(false);
+  const [name, setName] = useState("");
+  const [email, setEmail] = useState("");
+  const [feedback, setFeadback] = useState("");
+  const [review, setReview] = useState([]);
+
 
   let { id } = useParams();
 
@@ -36,16 +41,33 @@ export function ProductDetails() {
   const handleClose = () => {
     setOpen(false);
   };
+
+  const handelReview = () => {
+    const data = { title: name, mail: email, expr: feedback };
+    const updateItems = [...review, data];
+    setReview(updateItems);
+  };
+ 
+
   return (
     <>
-      <Box sx={{ display: "flex", flexWrap: "wrap", marginTop: "20px" }}>
+      <Box
+        sx={{
+          display: "flex",
+          flexWrap: "wrap",
+          marginTop: "20px",
+          backgroundColor: "#e7e8e1",
+        }}
+      >
         <Box
           component={"img"}
           sx={{
             width: "35%",
             height: "500px",
             marginLeft: "2rem",
+            marginTop: "3rem",
             borderRadius: "10px",
+
           }}
           src="
           https://freepngimg.com/thumb/categories/627.png"
@@ -55,11 +77,11 @@ export function ProductDetails() {
           sx={{
             display: "flex",
             flexDirection: "column",
-            marginLeft: "3rem",
+            marginLeft: "4rem",
+            marginTop: "3rem",
             width: "50%",
             height: "500px",
-            border: "1px solid black",
-            borderRadius: "10px",
+
           }}
         >
           <Typography
@@ -68,43 +90,35 @@ export function ProductDetails() {
               fontWeight: "bold",
               marginLeft: "2rem",
               marginBottom: "2rem",
+              marginTop: "2rem",
             }}
           >
             Title: {pass.name}
           </Typography>
           <Typography
-            sx={{ fontSize: "1.5rem", fontWeight: "bold", marginLeft: "2rem" }}
+            sx={{
+              fontSize: "1.5rem",
+              fontWeight: "bold",
+              marginLeft: "2rem",
+            }}
           >
             Product Features:
           </Typography>
 
           <Typography
             sx={{
-              fontSize: "1.2rem",
+              fontSize: "1rem",
               marginLeft: "2rem",
-              marginTop: "2rem",
+              marginTop: "1rem",
             }}
           >
             {pass.description}
           </Typography>
-
-          <Button
-            sx={{
-              marginTop: "30%",
-              border: "1px solid black",
-              width: "25%",
-              marginLeft: "38%",
-            }}
-          >
-            Add to Cart
-          </Button>
-        </Box>
-
-        <Box>
           <Box
             sx={{
               display: "flex",
-              textAlign: "center",
+              alignItems: "center",
+              marginTop: "5px",
             }}
           >
             <Typography
@@ -112,11 +126,62 @@ export function ProductDetails() {
                 fontSize: "1.5rem",
                 fontWeight: "bold",
                 marginLeft: "2rem",
-                marginBottom: "2rem",
-                marginTop: "2rem",
               }}
             >
-              <FcRating style={{ color: "black", fontSize: "50px" }} /> Reviews
+              Price:
+            </Typography>
+            <Typography
+              sx={{
+                fontSize: "1.5rem",
+              }}
+            >
+              {pass.price} $
+            </Typography>
+          </Box>
+
+          <Box
+            sx={{
+              display: "flex",
+              justifyContent: "center",
+              alignItems: "center",
+            }}
+          >
+            <Button
+              sx={{
+                marginTop: "25%",
+                border: "1px solid black",
+                borderRadius: "10px",
+                width: "45%",
+              }}
+            >
+              Add to Cart
+            </Button>
+          </Box>
+        </Box>
+
+        <Box>
+          <Box
+            sx={{
+              display: "flex",
+              textAlign: "center",
+              alignItems: "center",
+              marginTop: "2rem",
+            }}
+          >
+            <Typography
+              sx={{
+                marginLeft: "2rem",
+              }}
+            >
+              <FcRating style={{ fontSize: "50px" }} />
+            </Typography>
+            <Typography
+              sx={{
+                fontSize: "1.5rem",
+                fontWeight: "bold",
+              }}
+            >
+              Reviews
             </Typography>
           </Box>
           <Typography
@@ -158,6 +223,7 @@ export function ProductDetails() {
               <Box>
                 <Input
                   placeholder="Name"
+                  onChange={(e) => setName(e.target.value)}
                   style={{ padding: "5px", width: "400px" }}
                 />
                 <Box
@@ -167,6 +233,7 @@ export function ProductDetails() {
                 >
                   <Input
                     placeholder="Email"
+                    onChange={(e) => setEmail(e.target.value)}
                     style={{ padding: "5px", width: "400px" }}
                   />
                 </Box>
@@ -178,6 +245,7 @@ export function ProductDetails() {
                   <TextareaAutosize
                     minRows={8}
                     placeholder="Enter your feedback"
+                    onChange={(e) => setFeadback(e.target.value)}
                     style={{ width: "400px" }}
                   />
                 </Box>
@@ -185,11 +253,36 @@ export function ProductDetails() {
             </DialogContent>
             <DialogActions>
               <Button onClick={handleClose}>Cancel</Button>
-              <Button onClick={handleClose}>Add Review</Button>
+              <Button
+                type="submit"
+                onClick={() => {
+                  handleClose();
+                  handelReview();
+                }}
+              >
+                Add Review
+              </Button>
             </DialogActions>
           </Dialog>
         </Box>
+
+       
       </Box>
+      <Box 
+       sx={{
+        backgroundColor: "#e7e8e1",
+      }}>
+      
+      <Box 
+      sx={{
+        marginLeft: "2rem",
+        backgroundColor: "#e7e8e1",
+      }}>
+        {review.map((item, index) => {
+          return ( <Box key={index}>  <Typography>{item.title}</Typography> <Typography>{item.mail}</Typography> <Typography>{item.expr}</Typography> </Box> )  })}
+        
+        </Box>
+       </Box>
     </>
   );
 }
