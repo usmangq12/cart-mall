@@ -28,7 +28,6 @@ import {
 } from "../Actions";
 
 function* fetchProducts(action) {
-  console.log("action:", action);
   const products = yield call(GetProducts);
   yield put({ type: SET_PRODUCTS_LIST, payload: products });
 }
@@ -38,7 +37,6 @@ export function* fetchProductsSaga() {
 }
 
 function* fetchProductsItalian(action) {
-  console.log("action:", action);
   const products = yield call(GetProductsItalian);
   yield put({ type: SET_PRODUCTS_LIST_ITALIAN, payload: products });
 }
@@ -48,7 +46,6 @@ export function* fetchProductsItalianSaga() {
 }
 
 function* fetchProductsIrish(action) {
-  console.log("action:", action);
   const products = yield call(GetProductsIRISH);
   yield put({ type: SET_PRODUCTS_LIST_IRISH, payload: products });
 }
@@ -58,7 +55,6 @@ export function* fetchProductsIrishSaga() {
 }
 
 function* fetchProductsAnimal(action) {
-  console.log("action:", action);
   const products = yield call(GetProductsAnimal);
   yield put({ type: SET_PRODUCTS_LIST_ANIMAL, payload: products });
 }
@@ -68,7 +64,6 @@ export function* fetchProductsAnimalSaga() {
 }
 
 function* fetchProductsFlower(action) {
-  console.log("action:", action);
   const products = yield call(GetProductsFlower);
   yield put({ type: SET_PRODUCTS_LIST_FLOWER, payload: products });
 }
@@ -78,7 +73,6 @@ export function* fetchProductsFlowerSaga() {
 }
 
 function* fetchProductsChristmas(action) {
-  console.log("action:", action);
   const products = yield call(GetProductsChristmas);
   yield put({ type: SET_PRODUCTS_LIST_CHRISTMAS, payload: products });
 }
@@ -88,7 +82,6 @@ export function* fetchProductsChristmasSaga() {
 }
 
 function* fetchProductsValentines(action) {
-  console.log("action:", action);
   const products = yield call(GetProductsValentines);
   yield put({ type: SET_PRODUCTS_LIST_VALENTINES, payload: products });
 }

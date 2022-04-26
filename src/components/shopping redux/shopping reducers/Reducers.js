@@ -13,7 +13,6 @@ const productState = {
 };
 
 export function productsReducer(state = productState, action) {
-  console.log("action:", action);
   switch (action.type) {
     case SET_PRODUCTS_LIST:
       return {
