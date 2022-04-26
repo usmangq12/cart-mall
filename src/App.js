@@ -5,13 +5,13 @@ import { ProductDetails } from "./components/ProductDetails";
 
 function App() {
   return (
-    <Router>
-      <Routes>
-        <Route path="/" element={<NavBar />} />
-        <Route path="shippingdetails" element={<ShippingDetails />} />
-        <Route path="productdetails/:id" element={<ProductDetails />} />
-      </Routes>
-    </Router>
+      <Router>
+        <Routes>
+          <Route path="/" element={<NavBar />} />
+          <Route path="shippingdetails" element={<ShippingDetails />} />
+          <Route path="productdetails/:id" element={<ProductDetails />} />
+        </Routes>
+      </Router>
   );
 }
 
