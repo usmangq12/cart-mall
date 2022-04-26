@@ -66,6 +66,8 @@ export function ProductDetails() {
             height: "500px",
             marginLeft: "2rem",
             marginTop: "3rem",
+            borderRadius: "10px",
+
           }}
           src="
           https://freepngimg.com/thumb/categories/627.png"
@@ -79,6 +81,7 @@ export function ProductDetails() {
             marginTop: "3rem",
             width: "50%",
             height: "500px",
+
           }}
         >
           <Typography

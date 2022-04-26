@@ -18,7 +18,7 @@ import {
 } from "../shopping redux/Actions";
 
 export default function Homepage(props) {
-  const { getProducts } = props;
+  const { getProducts, handleAddProduct } = props;
   const dispatch = useDispatch();
 
   return (
@@ -120,7 +120,7 @@ export default function Homepage(props) {
             justifyContent: "space-between",
             width: "100%",
             height: "90vh",
-            gap: "10px",
+            gap: "30px",
           }}
         >
           {getProducts.map((product) => {
@@ -129,9 +129,9 @@ export default function Homepage(props) {
                 sx={{
                   width: "30%",
                   height: "auto",
-                  border: "1px solid black",
                   borderRadius: "5px",
                   backgroundColor: "#f5f5f5",
+                  boxShadow: "0px 0px 5px #000000",
                   textDecoration: "none",
                   display: "flex",
                   flexDirection: "column",
@@ -217,6 +217,9 @@ export default function Homepage(props) {
                     }}
                     variant="contained"
                     color="primary"
+                    onClick={() => {
+                      handleAddProduct(product);
+                    }}
                   >
                     Add to Cart
                   </Button>
