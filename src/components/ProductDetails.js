@@ -1,15 +1,38 @@
-import { Button, Typography,Input ,TextareaAutosize} from "@mui/material";
-import { Box, width } from "@mui/system";
-import * as React from "react";
-import TextField from "@mui/material/TextField";
+import {
+  Box,
+  Button,
+  Typography,
+  Input,
+  TextareaAutosize,
+} from "@mui/material";
 import Dialog from "@mui/material/Dialog";
 import DialogActions from "@mui/material/DialogActions";
 import DialogContent from "@mui/material/DialogContent";
 import DialogTitle from "@mui/material/DialogTitle";
-import { FcRating } from 'react-icons/fc';
+import { FcRating } from "react-icons/fc";
+import { useParams } from "react-router-dom";
+import { useSelector } from "react-redux";
+import { useState, useEffect } from "react";
 
 export function ProductDetails() {
-  const [open, setOpen] = React.useState(false);
+  const [open, setOpen] = useState(false);
+  const [name, setName] = useState("");
+  const [email, setEmail] = useState("");
+  const [feedback, setFeadback] = useState("");
+  const [review, setReview] = useState([]);
+
+
+  let { id } = useParams();
+
+  const [pass, setPass] = useState("");
+
+  const Items = useSelector((state) => state.productsReducer.Products);
+
+  useEffect(() => {
+    const newPass = Items.find((item) => item.product_id === parseInt(id));
+
+    setPass(newPass);
+  }, []);
 
   const handleClickOpen = () => {
     setOpen(true);
@@ -18,24 +41,44 @@ export function ProductDetails() {
   const handleClose = () => {
     setOpen(false);
   };
+
+  const handelReview = () => {
+    const data = { title: name, mail: email, expr: feedback };
+    const updateItems = [...review, data];
+    setReview(updateItems);
+  };
+ 
+
   return (
     <>
-      <Box sx={{ display: "flex", flexWrap: "wrap" }}>
+      <Box
+        sx={{
+          display: "flex",
+          flexWrap: "wrap",
+          marginTop: "20px",
+          backgroundColor: "#e7e8e1",
+        }}
+      >
         <Box
           component={"img"}
-          sx={{ width: "35%", height: "500px", marginLeft: "2rem" }}
+          sx={{
+            width: "35%",
+            height: "500px",
+            marginLeft: "2rem",
+            marginTop: "3rem",
+          }}
           src="
-          https://cdn.shopify.com/s/files/1/0104/5757/9583/products/OSCO-Men-Dress-Shoes-Men-Formal-Shoes-Leather-Luxury-Fashion-Wedding-Shoes-Men-Business-Casual-Oxford.jpg?v=1575045878"
+          https://freepngimg.com/thumb/categories/627.png"
         />
 
         <Box
           sx={{
             display: "flex",
             flexDirection: "column",
-            marginLeft: "3rem",
+            marginLeft: "4rem",
+            marginTop: "3rem",
             width: "50%",
             height: "500px",
-            border: "1px solid black",
           }}
         >
           <Typography
@@ -44,60 +87,99 @@ export function ProductDetails() {
               fontWeight: "bold",
               marginLeft: "2rem",
               marginBottom: "2rem",
+              marginTop: "2rem",
             }}
           >
-            Title: Clarks Men's Tilden Cap Oxford Shoe
+            Title: {pass.name}
           </Typography>
           <Typography
-            sx={{ fontSize: "1.5rem", fontWeight: "bold", marginLeft: "2rem" }}
+            sx={{
+              fontSize: "1.5rem",
+              fontWeight: "bold",
+              marginLeft: "2rem",
+            }}
           >
             Product Features:
           </Typography>
 
           <Typography
             sx={{
-              fontSize: "1.2rem",
+              fontSize: "1rem",
               marginLeft: "2rem",
-              marginTop: "2rem",
+              marginTop: "1rem",
             }}
           >
-            The resulting treaties allowed Italy, Romania, Hungary, Bulgaria,
-            and Finland to reassume their responsibilities as sovereign states
-            in international affairs and thus qualify for membership in the UN.
+            {pass.description}
           </Typography>
-
-          <Button
+          <Box
             sx={{
-              marginTop: "30%",
-              border: "1px solid black",
-              width: "25%",
-              marginLeft: "38%",
+              display: "flex",
+              alignItems: "center",
+              marginTop: "5px",
             }}
           >
-            Add to Cart
-          </Button>
+            <Typography
+              sx={{
+                fontSize: "1.5rem",
+                fontWeight: "bold",
+                marginLeft: "2rem",
+              }}
+            >
+              Price:
+            </Typography>
+            <Typography
+              sx={{
+                fontSize: "1.5rem",
+              }}
+            >
+              {pass.price} $
+            </Typography>
+          </Box>
+
+          <Box
+            sx={{
+              display: "flex",
+              justifyContent: "center",
+              alignItems: "center",
+            }}
+          >
+            <Button
+              sx={{
+                marginTop: "25%",
+                border: "1px solid black",
+                borderRadius: "10px",
+                width: "45%",
+              }}
+            >
+              Add to Cart
+            </Button>
+          </Box>
         </Box>
 
         <Box>
-
           <Box
-          sx={{
-            display:"flex",
-            textAlign:"center",
-          }}
-          >
-          <Typography
             sx={{
-              fontSize: "1.5rem",
-              fontWeight: "bold",
-              marginLeft: "2rem",
-              marginBottom: "2rem",
+              display: "flex",
+              textAlign: "center",
+              alignItems: "center",
               marginTop: "2rem",
-              
             }}
           >
-          <FcRating style={{color: "black", fontSize: "50px"}}/> Reviews 
-          </Typography>
+            <Typography
+              sx={{
+                marginLeft: "2rem",
+              }}
+            >
+              <FcRating style={{ fontSize: "50px" }} />
+            </Typography>
+            <Typography
+              sx={{
+                fontSize: "1.5rem",
+                fontWeight: "bold",
+              }}
+            >
+              Reviews
+            </Typography>
           </Box>
           <Typography
             sx={{
@@ -127,46 +209,77 @@ export function ProductDetails() {
           >
             Write A Review
           </Button>
-          <Dialog
-            
-          
-          open={open} onClose={handleClose} 
-        >
+          <Dialog open={open} onClose={handleClose}>
             <DialogTitle>Write A Review</DialogTitle>
             <DialogContent
-            sx={{
-              width:"400px",
-              height:"40vh"
-            }}
+              sx={{
+                width: "400px",
+                height: "40vh",
+              }}
             >
-               <Box>
-              <Input  placeholder="Name"  style={{padding:"5px", width:"400px"}}  />
-              <Box
-              sx={{ 
-                marginTop:"10px",
-              }}>
-              
-              <Input  placeholder="Email"  style={{padding:"5px", width:"400px"}}  />
-              </Box>
-              <Box 
-              sx={{ 
-                marginTop:"10px",
-              }}>
-              <TextareaAutosize
-               minRows={8}
-              placeholder="Enter your feedback"
-              style={{ width:"400px", }}
-              />
-              </Box>
+              <Box>
+                <Input
+                  placeholder="Name"
+                  onChange={(e) => setName(e.target.value)}
+                  style={{ padding: "5px", width: "400px" }}
+                />
+                <Box
+                  sx={{
+                    marginTop: "10px",
+                  }}
+                >
+                  <Input
+                    placeholder="Email"
+                    onChange={(e) => setEmail(e.target.value)}
+                    style={{ padding: "5px", width: "400px" }}
+                  />
+                </Box>
+                <Box
+                  sx={{
+                    marginTop: "10px",
+                  }}
+                >
+                  <TextareaAutosize
+                    minRows={8}
+                    placeholder="Enter your feedback"
+                    onChange={(e) => setFeadback(e.target.value)}
+                    style={{ width: "400px" }}
+                  />
+                </Box>
               </Box>
             </DialogContent>
             <DialogActions>
               <Button onClick={handleClose}>Cancel</Button>
-              <Button onClick={handleClose}>Add Review</Button>
+              <Button
+                type="submit"
+                onClick={() => {
+                  handleClose();
+                  handelReview();
+                }}
+              >
+                Add Review
+              </Button>
             </DialogActions>
           </Dialog>
         </Box>
+
+       
       </Box>
+      <Box 
+       sx={{
+        backgroundColor: "#e7e8e1",
+      }}>
+      
+      <Box 
+      sx={{
+        marginLeft: "2rem",
+        backgroundColor: "#e7e8e1",
+      }}>
+        {review.map((item, index) => {
+          return ( <Box key={index}>  <Typography>{item.title}</Typography> <Typography>{item.mail}</Typography> <Typography>{item.expr}</Typography> </Box> )  })}
+        
+        </Box>
+       </Box>
     </>
   );
 }
