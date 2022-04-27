@@ -65,6 +65,7 @@ export function ProductDetails() {
             flexDirection: "row",
           }}
         >
+          
           <Box
             component={"img"}
             sx={{
