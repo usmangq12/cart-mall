@@ -45,13 +45,7 @@ export function ProductDetails() {
     const data = { title, email, feedback };
     const updateItems = [...review, data];
     setReview(updateItems);
-    localStorage.setItem("review", JSON.stringify(updateItems));
   };
-
-
-
-  const get = JSON.parse(localStorage.getItem("review"));
-
 
   return (
     <>
@@ -62,33 +56,9 @@ export function ProductDetails() {
         }}
       >
         <Box
-
-          component={"img"}
-          sx={{
-            width: "35%",
-            height: "500px",
-            marginLeft: "2rem",
-            marginTop: "3rem",
-            borderRadius: "10px",
-          }}
-          src="
-          https://freepngimg.com/thumb/categories/627.png"
-        />
-
-        <Box
-          sx={{
-            display: "flex",
-            flexDirection: "column",
-            marginLeft: "4rem",
-            marginTop: "3rem",
-            width: "50%",
-              
-            height: "500px",
-
           sx={{
             display: "flex",
             flexDirection: "row",
-
           }}
         >
           
@@ -300,7 +270,6 @@ export function ProductDetails() {
           </Dialog>
         </Box>
 
-
         <Box>
           <Box
             sx={{
@@ -308,7 +277,7 @@ export function ProductDetails() {
               backgroundColor: "#e7e8e1",
             }}
           >
-            {get.map((item, index) => {
+            {review.map((item, index) => {
               return (
                 <Box key={index}>
                   {" "}
@@ -318,12 +287,12 @@ export function ProductDetails() {
                       fontWeight: "bold",
                     }}
                   >
-                   {item.title}
+                    {item.title}
                   </Typography>{" "}
                   <Typography>{item.email}</Typography>{" "}
-                  <Typography
-                  sx={{ marginTop: "10px" }}
-                  >{item.feedback}</Typography>{" "}
+                  <Typography sx={{ marginTop: "10px" }}>
+                    {item.feedback}
+                  </Typography>{" "}
                 </Box>
               );
             })}
