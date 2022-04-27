@@ -16,11 +16,10 @@ import { useState, useEffect } from "react";
 
 export function ProductDetails() {
   const [open, setOpen] = useState(false);
-  const [name, setName] = useState("");
+  const [title, setTitle] = useState("");
   const [email, setEmail] = useState("");
   const [feedback, setFeadback] = useState("");
   const [review, setReview] = useState([]);
-
 
   let { id } = useParams();
 
@@ -43,82 +42,50 @@ export function ProductDetails() {
   };
 
   const handelReview = () => {
-    const data = { title: name, mail: email, expr: feedback };
+    const data = { title, email, feedback };
     const updateItems = [...review, data];
     setReview(updateItems);
+    localStorage.setItem("review", JSON.stringify(updateItems));
   };
- 
+
+  const get = JSON.parse(localStorage.getItem("review"));
+
 
   return (
     <>
       <Box
         sx={{
-          display: "flex",
-          flexWrap: "wrap",
           marginTop: "20px",
           backgroundColor: "#e7e8e1",
         }}
       >
         <Box
-          component={"img"}
-          sx={{
-            width: "35%",
-            height: "500px",
-            marginLeft: "2rem",
-            marginTop: "3rem",
-            borderRadius: "10px",
-
-          }}
-          src="
-          https://freepngimg.com/thumb/categories/627.png"
-        />
-
-        <Box
           sx={{
             display: "flex",
-            flexDirection: "column",
-            marginLeft: "4rem",
-            marginTop: "3rem",
-            width: "50%",
-            height: "500px",
-
+            flexDirection: "row",
           }}
         >
-          <Typography
+          <Box
+            component={"img"}
             sx={{
-              fontSize: "1.5rem",
-              fontWeight: "bold",
+              width: "35%",
+              height: "500px",
               marginLeft: "2rem",
-              marginBottom: "2rem",
-              marginTop: "2rem",
+              marginTop: "3rem",
+              borderRadius: "10px",
             }}
-          >
-            Title: {pass.name}
-          </Typography>
-          <Typography
-            sx={{
-              fontSize: "1.5rem",
-              fontWeight: "bold",
-              marginLeft: "2rem",
-            }}
-          >
-            Product Features:
-          </Typography>
+            src="
+          https://freepngimg.com/thumb/categories/627.png"
+          />
 
-          <Typography
-            sx={{
-              fontSize: "1rem",
-              marginLeft: "2rem",
-              marginTop: "1rem",
-            }}
-          >
-            {pass.description}
-          </Typography>
           <Box
             sx={{
               display: "flex",
-              alignItems: "center",
-              marginTop: "5px",
+              flexDirection: "column",
+              marginLeft: "4rem",
+              marginTop: "3rem",
+              width: "50%",
+              height: "500px",
             }}
           >
             <Typography
@@ -126,38 +93,78 @@ export function ProductDetails() {
                 fontSize: "1.5rem",
                 fontWeight: "bold",
                 marginLeft: "2rem",
+                marginBottom: "2rem",
+                marginTop: "2rem",
               }}
             >
-              Price:
+              Title: {pass.name}
             </Typography>
             <Typography
               sx={{
                 fontSize: "1.5rem",
+                fontWeight: "bold",
+                marginLeft: "2rem",
               }}
             >
-              {pass.price} $
+              Product Features:
             </Typography>
-          </Box>
 
-          <Box
-            sx={{
-              display: "flex",
-              justifyContent: "center",
-              alignItems: "center",
-            }}
-          >
-            <Button
+            <Typography
               sx={{
-                marginTop: "25%",
-                border: "1px solid black",
-                borderRadius: "10px",
-                width: "45%",
+                fontSize: "1rem",
+                marginLeft: "2rem",
+                marginTop: "1rem",
               }}
             >
-              Add to Cart
-            </Button>
+              {pass.description}
+            </Typography>
+            <Box
+              sx={{
+                display: "flex",
+                alignItems: "center",
+                marginTop: "5px",
+              }}
+            >
+              <Typography
+                sx={{
+                  fontSize: "1.5rem",
+                  fontWeight: "bold",
+                  marginLeft: "2rem",
+                }}
+              >
+                Price:
+              </Typography>
+              <Typography
+                sx={{
+                  fontSize: "1.5rem",
+                }}
+              >
+                {pass.price} $
+              </Typography>
+            </Box>
+
+            <Box
+              sx={{
+                display: "flex",
+                justifyContent: "center",
+                alignItems: "center",
+              }}
+            >
+              <Button
+                sx={{
+                  marginTop: "25%",
+                  border: "1px solid black",
+                  borderRadius: "10px",
+                  width: "45%",
+                }}
+              >
+                Add to Cart
+              </Button>
+            </Box>
           </Box>
         </Box>
+
+        <hr />
 
         <Box>
           <Box
@@ -222,8 +229,8 @@ export function ProductDetails() {
             >
               <Box>
                 <Input
-                  placeholder="Name"
-                  onChange={(e) => setName(e.target.value)}
+                  placeholder="Review Title"
+                  onChange={(e) => setTitle(e.target.value)}
                   style={{ padding: "5px", width: "400px" }}
                 />
                 <Box
@@ -266,23 +273,35 @@ export function ProductDetails() {
           </Dialog>
         </Box>
 
-       
-      </Box>
-      <Box 
-       sx={{
-        backgroundColor: "#e7e8e1",
-      }}>
-      
-      <Box 
-      sx={{
-        marginLeft: "2rem",
-        backgroundColor: "#e7e8e1",
-      }}>
-        {review.map((item, index) => {
-          return ( <Box key={index}>  <Typography>{item.title}</Typography> <Typography>{item.mail}</Typography> <Typography>{item.expr}</Typography> </Box> )  })}
-        
+        <Box>
+          <Box
+            sx={{
+              marginLeft: "2rem",
+              backgroundColor: "#e7e8e1",
+            }}
+          >
+            {get.map((item, index) => {
+              return (
+                <Box key={index}>
+                  {" "}
+                  <Typography
+                    sx={{
+                      fontSize: "1.5rem",
+                      fontWeight: "bold",
+                    }}
+                  >
+                   {item.title}
+                  </Typography>{" "}
+                  <Typography>{item.email}</Typography>{" "}
+                  <Typography
+                  sx={{ marginTop: "10px" }}
+                  >{item.feedback}</Typography>{" "}
+                </Box>
+              );
+            })}
+          </Box>
         </Box>
-       </Box>
+      </Box>
     </>
   );
 }
