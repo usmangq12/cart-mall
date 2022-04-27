@@ -91,6 +91,7 @@ export function ProductDetails() {
 
           }}
         >
+          
           <Box
             component={"img"}
             sx={{
