@@ -21,7 +21,6 @@ export function ProductDetails() {
   const [feedback, setFeadback] = useState("");
   const [review, setReview] = useState([]);
 
-
   let { id } = useParams();
 
   const [pass, setPass] = useState("");
@@ -47,7 +46,6 @@ export function ProductDetails() {
     const updateItems = [...review, data];
     setReview(updateItems);
   };
- 
 
   return (
     <>
@@ -67,7 +65,6 @@ export function ProductDetails() {
             marginLeft: "2rem",
             marginTop: "3rem",
             borderRadius: "10px",
-
           }}
           src="
           https://freepngimg.com/thumb/categories/627.png"
@@ -81,7 +78,6 @@ export function ProductDetails() {
             marginTop: "3rem",
             width: "50%",
             height: "500px",
-
           }}
         >
           <Typography
@@ -265,24 +261,30 @@ export function ProductDetails() {
             </DialogActions>
           </Dialog>
         </Box>
-
-       
       </Box>
-      <Box 
-       sx={{
-        backgroundColor: "#e7e8e1",
-      }}>
-      
-      <Box 
-      sx={{
-        marginLeft: "2rem",
-        backgroundColor: "#e7e8e1",
-      }}>
-        {review.map((item, index) => {
-          return ( <Box key={index}>  <Typography>{item.title}</Typography> <Typography>{item.mail}</Typography> <Typography>{item.expr}</Typography> </Box> )  })}
-        
+      <Box
+        sx={{
+          backgroundColor: "#e7e8e1",
+        }}
+      >
+        <Box
+          sx={{
+            marginLeft: "2rem",
+            backgroundColor: "#e7e8e1",
+          }}
+        >
+          {review.map((item, index) => {
+            return (
+              <Box key={index}>
+                {" "}
+                <Typography>{item.title}</Typography>{" "}
+                <Typography>{item.mail}</Typography>{" "}
+                <Typography>{item.expr}</Typography>{" "}
+              </Box>
+            );
+          })}
         </Box>
-       </Box>
+      </Box>
     </>
   );
 }
