@@ -4,15 +4,7 @@ import createSagaMiddleware from "redux-saga";
 
 import rootReducer from "../shopping reducers/Index.js";
 
-import {
-  fetchProductsSaga,
-  fetchProductsItalianSaga,
-  fetchProductsAnimalSaga,
-  fetchProductsIrishSaga,
-  fetchProductsChristmasSaga,
-  fetchProductsValentinesSaga,
-  fetchProductsFlowerSaga,
-} from "../store/Saga.js";
+import { fetchProductsSaga } from "../store/Saga.js";
 
 const sagaMiddleware = createSagaMiddleware();
 
@@ -24,11 +16,5 @@ const store = createStore(
 );
 
 sagaMiddleware.run(fetchProductsSaga);
-sagaMiddleware.run(fetchProductsItalianSaga);
-sagaMiddleware.run(fetchProductsAnimalSaga);
-sagaMiddleware.run(fetchProductsIrishSaga);
-sagaMiddleware.run(fetchProductsChristmasSaga);
-sagaMiddleware.run(fetchProductsValentinesSaga);
-sagaMiddleware.run(fetchProductsFlowerSaga);
 
 export default store;

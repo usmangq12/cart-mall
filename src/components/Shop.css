@@ -15,11 +15,30 @@
 
 }
 
+.BlinkiflyBox {
+    display: flex;
+}
+
+.BlinkiflyText {
+    font-size: 30px;
+    font-weight: bold;
+    padding: 5px;
+    color: Orange;
+}
+
 .SiShopware {
     margin-top: 15px;
     font-size: 1.4rem;
     color: orange;
+}
 
+
+.CartIconText {
+    margin: 3px;
+    font-size: 14px;
+    font-weight: 700;
+    vertical-align: super;
+    color: orange;
 }
 
 .InputSearch {
@@ -29,10 +48,16 @@
     border: none;
 }
 
+.FiShoppingCart {
+    font-size: 1rem;
+    color: orange;
+}
+
 .CartIcon {
-    font-size: 1.4rem;
     margin-right: 12rem;
     cursor: pointer;
+    padding-right: 20px;
+
 }
 
 .DialogBox {
@@ -53,6 +78,17 @@
     justify-content: space-between;
 }
 
+.DialogTitleCartText {
+    font-size: 3rem;
+    font-weight: 700;
+    color: blue;
+}
+
+.CartCloseButton{
+    cursor: pointer;
+    font-weight: 700;
+}
+
 .DialogFooter {
     display: flex;
     justify-content: flex-end;
@@ -61,4 +97,121 @@
 .DialogButton {
     color: blue;
     text-decoration: none;
+}
+
+.DialogContent {
+    margin: 30px auto;
+}
+
+.DialogContentHeader {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    height: 30px;
+    font-size: 20px;
+    font-weight: 700;
+    border-bottom: 2px solid black;
+}
+
+.clearCart {
+    display: flex;
+    justify-content: flex-end;
+    margin-top: 10px;
+    margin-right: 10px;
+}
+
+.clearCartButton {
+    border: none;
+    border-radius: 5px;
+    height: 30px;
+    width: 150px;
+    font-size: 5px;
+    font-weight: bold;
+    cursor: pointer;
+    color: black;
+}
+
+.noCartItems {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 18px;
+    font-weight: 700;
+    padding-top: 20px;
+}
+
+.cartItems {
+    display: flex;
+    align-items: center;
+    padding-top: 20px;
+    padding-bottom: 20px;
+    font-size: 20px;
+    font-weight: 700;
+}
+
+.cartItemImage {
+    width: 100px;
+    height: auto;
+    border: 2px solid #e0e0e0;
+    margin-right: 10px;
+}
+
+.cartItemName {
+    width: 25%;
+}
+
+.cartItemQuantity {
+    width: 25%;
+    display: flex;
+    gap: 5px;
+}
+
+.cartItemIncreaseQuantityButton {
+    size: small;
+    width: 30px;
+    font-weight: 700;
+    border: none;
+    border-radius: 3px;
+    font-size: 18px;
+    color: black;
+    cursor: pointer;
+}
+
+.cartItemIncreaseQuantityButton:active {
+    transform: translateY(1.2px);
+}
+
+.cartItemDecreaseQuantityButton {
+    width: 30px;
+    font-weight: 700;
+    border: none;
+    border-radius: 3px;
+    font-size: 18px;
+    color: black;
+    cursor: pointer;
+
+}
+
+.cartItemDecreaseQuantityButton:active {
+    transform: translateY(1.2px);
+}
+
+.cartItemPrice {
+    padding-left: 20px;
+}
+
+.cartTotalPrice {
+    border-top: 2px solid black;
+    border-bottom: 2px solid black;
+    display: flex;
+    padding-top: 20px;
+    padding-bottom: 20px;
+    padding-left: 22%;
+    font-size: 20px;
+    font-weight: 700;
+}
+
+.cartTotalPriceText {
+    display: flex;
+    padding-left: 50%
 }

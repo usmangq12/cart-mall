@@ -7,19 +7,42 @@ import {
   Typography,
 } from "@mui/material";
 import { Link } from "react-router-dom";
-import {
-  GET_PRODUCTS_LIST,
-  GET_PRODUCTS_LIST_ITALIAN,
-  GET_PRODUCTS_LIST_IRISH,
-  GET_PRODUCTS_LIST_ANIMAL,
-  GET_PRODUCTS_LIST_FLOWER,
-  GET_PRODUCTS_LIST_CHRISTMAS,
-  GET_PRODUCTS_LIST_VALENTINES,
-} from "../shopping redux/Actions";
+import { GET_PRODUCTS_LIST } from "../shopping redux/Actions";
 
 export default function Homepage(props) {
   const { getProducts, handleAddProduct } = props;
   const dispatch = useDispatch();
+
+  const CategoryList = [
+    {
+      CategoryName: "French",
+      id: 1,
+    },
+    {
+      CategoryName: "Italian",
+      " id": 2,
+    },
+    {
+      CategoryName: "Irish",
+      " id": 3,
+    },
+    {
+      CategoryName: "Animal",
+      " id": 4,
+    },
+    {
+      CategoryName: "Flower",
+      " id": 5,
+    },
+    {
+      CategoryName: "Christmas",
+      " id": 6,
+    },
+    {
+      CategoryName: "Valentine's",
+      " id": 7,
+    },
+  ];
 
   return (
     <Box>
@@ -41,76 +64,19 @@ export default function Homepage(props) {
           }}
         >
           <Typography variant="h4">Categories:</Typography>
-          <ListItemButton
-            sx={{
-              marginTop: "1rem",
-            }}
-            onClick={() => {
-              dispatch({ type: GET_PRODUCTS_LIST });
-            }}
-          >
-            <ListItemText primary={"French"} />
-          </ListItemButton>
-          <ListItemButton
-            sx={{
-              marginTop: "1rem",
-            }}
-            onClick={() => {
-              dispatch({ type: GET_PRODUCTS_LIST_ITALIAN });
-            }}
-          >
-            <ListItemText primary={"Italian"} />
-          </ListItemButton>
-          <ListItemButton
-            sx={{
-              marginTop: "1rem",
-            }}
-            onClick={() => {
-              dispatch({ type: GET_PRODUCTS_LIST_IRISH });
-            }}
-          >
-            <ListItemText primary={"Irish"} />
-          </ListItemButton>
-          <ListItemButton
-            sx={{
-              marginTop: "1rem",
-            }}
-            onClick={() => {
-              dispatch({ type: GET_PRODUCTS_LIST_ANIMAL });
-            }}
-          >
-            <ListItemText primary={"Animal"} />
-          </ListItemButton>
-          <ListItemButton
-            sx={{
-              marginTop: "1rem",
-            }}
-            onClick={() => {
-              dispatch({ type: GET_PRODUCTS_LIST_FLOWER });
-            }}
-          >
-            <ListItemText primary={"Flower"} />
-          </ListItemButton>
-          <ListItemButton
-            sx={{
-              marginTop: "1rem",
-            }}
-            onClick={() => {
-              dispatch({ type: GET_PRODUCTS_LIST_CHRISTMAS });
-            }}
-          >
-            <ListItemText primary={"Christmas"} />
-          </ListItemButton>
-          <ListItemButton
-            sx={{
-              marginTop: "1rem",
-            }}
-            onClick={() => {
-              dispatch({ type: GET_PRODUCTS_LIST_VALENTINES });
-            }}
-          >
-            <ListItemText primary={"Valentine's"} />
-          </ListItemButton>
+          {CategoryList.map((category, index) => (
+            <ListItemButton
+              key={category.id}
+              sx={{
+                marginTop: "1rem",
+              }}
+              onClick={() => {
+                dispatch({ type: GET_PRODUCTS_LIST, payload: index + 1 });
+              }}
+            >
+              <ListItemText primary={category.CategoryName} />
+            </ListItemButton>
+          ))}
         </Box>
         <Box
           sx={{
