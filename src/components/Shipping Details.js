@@ -220,48 +220,49 @@ export function ShippingDetails() {
         return (
           <Box className="confirmation-of-order-main-box">
             <Typography variant="h4">Confirm Order</Typography>
-            <Typography>Please Confirm your given order</Typography>
 
-            <Typography variant="h5">Amount: 500</Typography>
             {customerDetails.map((item, index) => (
               <Box className="customer-details-box" key={index}>
                 <Box className="customer-details-box-inner">
-                  <Box>Name: {item.fullName}</Box>
-                  <Box>Email: {item.email}</Box>
-                  <Box>Phone: {item.phoneNumber}</Box>
-                  <Box>Address: {item.streetAddress}</Box>
-                  <Box>City: {item.city}</Box>
-                  <Box>Province: {item.province}</Box>
-                  <Box>Country: {item.country}</Box>
-                  <Box>Zip Code: {item.zipCode}</Box>
-                  <Box>Payment Method: {item.paymentMethod}</Box>
-                  <Box>Card Number: {item.cardNumber}</Box>
-                  <Box>CVV: {item.cvv}</Box>
-                  <Box>Expiry Date: {item.expiryDate}</Box>
+                  <address>
+                    <Box>{item.fullName}</Box>
+                    <Box>{item.email}</Box>
+                    <Box>{item.phoneNumber}</Box>
+                    <Box>{item.streetAddress}</Box>
+                    <Box>{item.city}</Box>
+                    <Box>{item.province}</Box>
+                    <Box>{item.country}</Box>
+                    <Box>{item.zipCode}</Box>
+                  </address>
                 </Box>
                 <Box className="customer-details-items">
+                  <Typography variant="h5">Items:</Typography>
                   {CartItems.map((item, index) => (
-                    <Box>
-                      <Typography>Product Name: {item.name}</Typography>
-                      <Typography>Product Price: {item.price}</Typography>
+                    <Box className="customer-details-items-inner">
+                      <Box>
+                        {item.name} {"$"}
+                        {item.price} x {item.quantity}
+                      </Box>
                     </Box>
                   ))}
-                  <h2>Total Price {discountedPrice}</h2>
                 </Box>
               </Box>
             ))}
 
             <Box className="confirmation-of-order-button-box">
-              <Box>Apply Voucher: </Box>
+              <Box>
+                <Box>Apply Voucher: </Box>
 
-              <RadioGroup row name="radio-buttons-group">
-                <FormControlLabel
-                  value={"zxvw34mnb"}
-                  control={<Radio />}
-                  label="zxvw34mnb"
-                  onClick={handleVoucher}
-                />
-              </RadioGroup>
+                <RadioGroup row name="radio-buttons-group">
+                  <FormControlLabel
+                    value={"zxvw34mnb"}
+                    control={<Radio />}
+                    label="zxvw34mnb"
+                    onClick={handleVoucher}
+                  />
+                </RadioGroup>
+              </Box>
+              <h2>Total Price {discountedPrice}</h2>
             </Box>
           </Box>
         );
