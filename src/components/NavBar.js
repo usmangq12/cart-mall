@@ -6,12 +6,28 @@ import Homepage from "./Homepage/homepage";
 import { useSelector } from "react-redux";
 import Cart from "./Cart";
 import "./Shop.css";
+import axios from "axios";
 
 export function NavBar() {
   const [open, setOpen] = useState(false);
   const [searchValue, setSearchValue] = useState("");
   const [getProducts, updateGetProducts] = useState([]);
   const [cartItems, updateCartItems] = useState([]);
+
+  useEffect(() => {
+    axios.get("https://backendapi.turing.com/products?page=1&limit=100").then((res) => {
+      console.log(res.data.rows);
+      updateGetProducts(res.data.rows);
+    });
+  }, []);
+
+  useEffect(() => {
+    axios.get(`https://backendapi.turing.com/products/search?query_string=${searchValue}`).then((res) => {
+      console.log(res.data.rows);
+      updateGetProducts(res.data.rows);
+    });
+  }, [searchValue]);
+
 
   const products = useSelector((state) => state.productsReducer.Products);
 
