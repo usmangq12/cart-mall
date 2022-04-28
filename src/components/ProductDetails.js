@@ -1,10 +1,4 @@
-import {
-  Box,
-  Button,
-  Typography,
-  Input,
-  TextareaAutosize,
-} from "@mui/material";
+import { Box, Button, Input, TextareaAutosize } from "@mui/material";
 import Dialog from "@mui/material/Dialog";
 import DialogActions from "@mui/material/DialogActions";
 import DialogContent from "@mui/material/DialogContent";
@@ -49,207 +43,74 @@ export function ProductDetails() {
 
   return (
     <>
-      <Box
-        sx={{
-          marginTop: "20px",
-          backgroundColor: "#e7e8e1",
-        }}
-      >
-        <Box
-          sx={{
-            display: "flex",
-            flexDirection: "row",
-          }}
-        >
+      <Box className="product-details-Main">
+        <Box className="product-details-container">
           <Box
             component={"img"}
-            sx={{
-              width: "35%",
-              height: "500px",
-              marginLeft: "2rem",
-              marginTop: "3rem",
-              borderRadius: "10px",
-            }}
+            className="product-details-image"
             src="
           https://freepngimg.com/thumb/categories/627.png"
           />
 
-          <Box
-            sx={{
-              display: "flex",
-              flexDirection: "column",
-              marginLeft: "4rem",
-              marginTop: "3rem",
-              width: "50%",
-              height: "500px",
-            }}
-          >
-            <Typography
-              sx={{
-                fontSize: "1.5rem",
-                fontWeight: "bold",
-                marginLeft: "2rem",
-                marginBottom: "2rem",
-                marginTop: "2rem",
-              }}
-            >
-              Title: {pass.name}
-            </Typography>
-            <Typography
-              sx={{
-                fontSize: "1.5rem",
-                fontWeight: "bold",
-                marginLeft: "2rem",
-              }}
-            >
-              Product Features:
-            </Typography>
+          <Box className="product-details-info">
+            <Box className="product-details-title">Title: {pass.name}</Box>
+            <Box className="product-details-Features">Product Features:</Box>
 
-            <Typography
-              sx={{
-                fontSize: "1rem",
-                marginLeft: "2rem",
-                marginTop: "1rem",
-              }}
-            >
+            <Box className="product-details-description">
               {pass.description}
-            </Typography>
-            <Box
-              sx={{
-                display: "flex",
-                alignItems: "center",
-                marginTop: "5px",
-              }}
-            >
-              <Typography
-                sx={{
-                  fontSize: "1.5rem",
-                  fontWeight: "bold",
-                  marginLeft: "2rem",
-                }}
-              >
-                Price:
-              </Typography>
-              <Typography
-                sx={{
-                  fontSize: "1.5rem",
-                }}
-              >
-                {pass.price} $
-              </Typography>
             </Box>
-
-            <Box
-              sx={{
-                display: "flex",
-                justifyContent: "center",
-                alignItems: "center",
-              }}
-            >
-              <Button
-                sx={{
-                  marginTop: "25%",
-                  border: "1px solid black",
-                  borderRadius: "10px",
-                  width: "45%",
-                }}
-              >
-                Add to Cart
-              </Button>
+            <Box className="product-details-price-Box">
+              <Box className="product-details-price">Price: </Box>
+              <Box className="product-details-price-value">
+                {"   "}
+                {pass.price} $
+              </Box>
             </Box>
           </Box>
         </Box>
 
         <hr />
 
-        <Box>
-          <Box
-            sx={{
-              display: "flex",
-              textAlign: "center",
-              alignItems: "center",
-              marginTop: "2rem",
-            }}
-          >
-            <Typography
-              sx={{
-                marginLeft: "2rem",
-              }}
-            >
-              <FcRating style={{ fontSize: "50px" }} />
-            </Typography>
-            <Typography
-              sx={{
-                fontSize: "1.5rem",
-                fontWeight: "bold",
-              }}
-            >
-              Reviews
-            </Typography>
+        <Box className="product-details-review-Container">
+          <Box className="product-details-review-box">
+            <Box>
+              <FcRating className="product-details-review-icon" />
+            </Box>
+            <Box className="product-details-review-text">Reviews</Box>
           </Box>
-          <Typography
-            sx={{
-              fontSize: "1rem",
-              fontWeight: "bold",
-              marginLeft: "2rem",
-            }}
-          >
+          <Box className="product-details-review-textbox">
             Review this product
-          </Typography>
-          <Typography
-            sx={{
-              fontSize: "1.2rem",
-              marginLeft: "2rem",
-              marginBottom: "2rem",
-            }}
-          >
+          </Box>
+          <Box className="product-details-review-title">
             Share your thoughts with other customers
-          </Typography>
-          <Button
-            variant="contained"
-            onClick={handleClickOpen}
-            sx={{
-              marginLeft: "2rem",
-              marginBottom: "2rem",
-            }}
-          >
-            Write A Review
-          </Button>
+          </Box>
+          <Box className="product-details-review-button">
+            <Button variant="contained" onClick={handleClickOpen}>
+              Write A Review
+            </Button>
+          </Box>
           <Dialog open={open} onClose={handleClose}>
             <DialogTitle>Write A Review</DialogTitle>
-            <DialogContent
-              sx={{
-                width: "400px",
-                height: "40vh",
-              }}
-            >
+            <DialogContent className="product-details-review-dialog">
               <Box>
                 <Input
                   placeholder="Review Title"
                   onChange={(e) => setTitle(e.target.value)}
-                  style={{ padding: "5px", width: "400px" }}
+                  className="product-details-review-Input-title"
                 />
-                <Box
-                  sx={{
-                    marginTop: "10px",
-                  }}
-                >
+                <Box className="product-details-review-Input-email-Box">
                   <Input
                     placeholder="Email"
                     onChange={(e) => setEmail(e.target.value)}
-                    style={{ padding: "5px", width: "400px" }}
+                    className="product-details-review-Input-email"
                   />
                 </Box>
-                <Box
-                  sx={{
-                    marginTop: "10px",
-                  }}
-                >
+                <Box className="product-details-review-Input-feedback-box">
                   <TextareaAutosize
                     minRows={8}
                     placeholder="Enter your feedback"
                     onChange={(e) => setFeadback(e.target.value)}
-                    style={{ width: "400px" }}
+                    className="product-details-review-Input-feedback"
                   />
                 </Box>
               </Box>
@@ -270,28 +131,18 @@ export function ProductDetails() {
         </Box>
 
         <Box>
-          <Box
-            sx={{
-              marginLeft: "2rem",
-              backgroundColor: "#e7e8e1",
-            }}
-          >
+          <Box sx={{}} className="product-review-details-container">
             {review.map((item, index) => {
               return (
                 <Box key={index}>
                   {" "}
-                  <Typography
-                    sx={{
-                      fontSize: "1.5rem",
-                      fontWeight: "bold",
-                    }}
-                  >
+                  <Box className="product-review-details-title">
                     {item.title}
-                  </Typography>{" "}
-                  <Typography>{item.email}</Typography>{" "}
-                  <Typography sx={{ marginTop: "10px" }}>
+                  </Box>{" "}
+                  <Box>{item.email}</Box>{" "}
+                  <Box className="product-review-details-feedback">
                     {item.feedback}
-                  </Typography>{" "}
+                  </Box>{" "}
                 </Box>
               );
             })}

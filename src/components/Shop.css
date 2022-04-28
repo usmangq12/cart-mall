@@ -84,7 +84,7 @@
     color: blue;
 }
 
-.CartCloseButton{
+.CartCloseButton {
     cursor: pointer;
     font-weight: 700;
 }
@@ -214,4 +214,363 @@
 .cartTotalPriceText {
     display: flex;
     padding-left: 50%
+}
+
+.finish-order {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+    width: 100vw;
+    background-color: #fafafa;
+    color: #000;
+    font-size: 1.5rem;
+    font-weight: bold;
+    font-family: sans-serif;
+    text-align: center;
+}
+
+.finish-order-button {
+    text-decoration: none;
+    color: white;
+}
+
+.product-details-Main {
+    margin-top: 20px;
+    background-color: #e7e8e1;
+}
+
+.product-details-container {
+    display: flex;
+    flex-direction: row
+}
+
+.product-details-image {
+    width: 35%;
+    height: 500px;
+    margin-left: 2rem;
+    border-radius: 10px;
+}
+
+.product-details-info {
+    display: flex;
+    flex-direction: column;
+    margin-left: 4rem;
+    margin-top: 3rem;
+    width: 50%;
+    height: 500px;
+}
+
+.product-details-title {
+    font-size: 2rem;
+    font-weight: bold;
+    margin-bottom: 1rem;
+
+}
+
+.product-details-Features {
+    font-size: 2rem;
+    font-weight: bold;
+    margin-top: 2rem;
+
+}
+
+.product-details-description {
+    font-size: 1rem;
+    margin-top: 2rem;
+}
+
+.product-details-price-Box {
+    display: flex;
+    align-items: center;
+    margin-top: 5px;
+    margin-top: 4rem;
+}
+
+.product-details-price {
+    font-size: 1.5rem;
+    font-weight: bold;
+
+}
+
+.product-details-price-value {
+    font-size: 1.5rem
+}
+
+.product-details-review-box {
+    display: flex;
+    text-align: center;
+    align-items: center;
+    margin-top: 2rem;
+}
+
+.product-details-review-Container {
+    margin-left: 2rem;
+}
+
+.product-details-review-icon {
+    font-size: 50px
+}
+
+.product-details-review-text {
+    font-size: 1.5rem;
+    font-weight: bold;
+}
+
+.product-details-review-textbox {
+    font-size: 1.5rem;
+    font-weight: bold
+}
+
+.product-details-review-title {
+    font-size: 1rem;
+    margin-bottom: 2rem;
+    margin-top: 0.5rem;
+}
+
+.product-details-review-button {
+    margin-bottom: 2rem;
+}
+
+.product-details-review-dialog {
+    width: 400px;
+    height: 40vh
+}
+
+.product-details-review-Input-title {
+    padding: 5px;
+    width: 400px
+}
+
+.product-details-review-Input-email-Box {
+    margin-top: 10px;
+
+}
+
+.product-details-review-Input-email {
+    padding: 5px;
+    width: 400px;
+}
+
+.product-details-review-Input-feedback-box {
+    margin-top: 10px
+}
+
+.product-details-review-Input-feedback {
+    width: 400px
+}
+
+.product-review-details-container {
+    margin-left: 2rem;
+    background-color: #e7e8e1
+}
+
+.product-review-details-title {
+    font-size: 1.5rem;
+    font-weight: bold
+}
+
+.product-review-details-feedback {
+    margin-top: 10px;
+}
+
+.customer-details {
+    display: flex;
+    flex-direction: column;
+    height: 300px;
+}
+
+.full-name {
+    padding: 3px;
+    border-radius: 5px;
+    width: 40%;
+    margin-top: 2rem;
+}
+
+.email {
+    padding: 3px;
+    border-radius: 5px;
+    width: 40%;
+    margin-top: 1rem;
+}
+
+.phone-number {
+    padding: 3px;
+    border-radius: 5px;
+    width: 40%;
+    margin-top: 1rem;
+}
+
+.shipping-details {
+    display: flex;
+    flex-direction: column;
+    height: 300px;
+}
+
+.shipping-address {
+    margin-top: 30px;
+    margin-bottom: 10px;
+}
+
+.street-address {
+    padding: 3px;
+    border-radius: 5px;
+    width: 40%;
+}
+
+.city-zip-code {
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+
+.city {
+    padding: 3px;
+    border-radius: 5px;
+    width: 40%;
+}
+
+.zip-code {
+    padding: 3px;
+    border-radius: 5px;
+    margin-left: 10px;
+    width: 40%;
+}
+
+.country-province {
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+
+.country {
+    padding: 3px;
+    border-radius: 5px;
+    width: 40%;
+}
+
+.province {
+    padding: 3px;
+    border-radius: 5px;
+    margin-left: 10px;
+    width: 40%;
+}
+
+.payment-details {
+    display: flex;
+    flex-direction: column;
+    height: 300px;
+}
+
+.payment-method {
+    margin-top: 10px;
+    color: black;
+    font-size: 1.3rem;
+}
+
+.radio-buttons-group {
+    margin-top: 10px;
+}
+
+.card-number {
+    margin-top: 5px;
+    padding: 3px;
+    border-radius: 5px;
+    margin-bottom: 10px;
+    width: 50%;
+}
+
+.CVV {
+    padding: 3px;
+    border-radius: 5px;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    width: 50%;
+}
+
+.expiry-date {
+    padding: 3px;
+    border-radius: 5px;
+    margin-bottom: 10px;
+    margin-top: 10px;
+    width: 50%;
+}
+
+.confirmation-of-order-main-box {
+    display: flex;
+    flex-direction: column;
+    height: auto;
+    width: 400px;
+}
+
+.customer-details-box {
+    display: flex;
+    flex-direction: row;
+    margin-top: 10px;
+}
+
+.customer-details-box-inner {
+    width: auto;
+    display: flex;
+    flex-direction: column;
+}
+
+.customer-details-items {
+    width: 50%;
+    display: flex;
+    flex-direction: column;
+    margin-left: 20px;
+}
+
+.confirmation-of-order-button-box {
+    margin-top: 20px;
+    font-size: large;
+    font-weight: 700;
+}
+
+.checkout-main-box {
+    position: relative;
+    background-size: cover;
+    height: 100vh;
+}
+
+.checkout-main-box-container {
+    height: auto;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.checkout-stepper {
+    margin-top: 21px;
+    width: 70%;
+    color: white;
+    padding-top: 2px;
+}
+
+.checkout-content {
+    display: flex;
+    justify-content: center;
+}
+
+.checkout-content-inner {
+    border-radius: 14px;
+    margin-left: 14px;
+    padding-left: 14px;
+    margin-right: 14px;
+    padding-top: 12px;
+    box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.75);
+    background-color: rgba(255, 255, 255, 0.3);
+    width: 70%;
+}
+
+.checkout-button-box {
+    display: flex;
+    margin-top: 3px;
+    margin-bottom: 12px;
+    gap: 10px;
+}
+
+.checkout-button-link {
+    text-decoration: none;
+    color: white
 }
