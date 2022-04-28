@@ -45,6 +45,7 @@ export function ProductDetails() {
     <>
       <Box className="product-details-Main">
         <Box className="product-details-container">
+
           <Box
             component={"img"}
             className="product-details-image"
