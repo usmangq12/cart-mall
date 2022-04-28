@@ -7,6 +7,7 @@ import { FcRating } from "react-icons/fc";
 import { useParams } from "react-router-dom";
 import { useSelector } from "react-redux";
 import { useState, useEffect } from "react";
+import axios from "axios";
 
 export function ProductDetails() {
   const [open, setOpen] = useState(false);
@@ -20,6 +21,18 @@ export function ProductDetails() {
   const [pass, setPass] = useState("");
 
   const Items = useSelector((state) => state.productsReducer.Products);
+
+  useEffect(() => {
+    axios
+      .get(
+        `https://backendapi.turing.com/products/${id}/reviews
+    `
+      )
+      .then((res) => {
+        console.log(res.data);
+        setReview(res.data);
+      });
+  }, []);
 
   useEffect(() => {
     const newPass = Items.find((item) => item.product_id === parseInt(id));
@@ -44,30 +57,32 @@ export function ProductDetails() {
   return (
     <>
       <Box className="product-details-Main">
-        <Box className="product-details-container">
-          <Box
-            component={"img"}
-            className="product-details-image"
-            src="
+        {pass && (
+          <Box className="product-details-container">
+            <Box
+              component={"img"}
+              className="product-details-image"
+              src="
           https://freepngimg.com/thumb/categories/627.png"
-          />
+            />
 
-          <Box className="product-details-info">
-            <Box className="product-details-title">Title: {pass.name}</Box>
-            <Box className="product-details-Features">Product Features:</Box>
+            <Box className="product-details-info">
+              <Box className="product-details-title">Title: {pass.name}</Box>
+              <Box className="product-details-Features">Product Features:</Box>
 
-            <Box className="product-details-description">
-              {pass.description}
-            </Box>
-            <Box className="product-details-price-Box">
-              <Box className="product-details-price">Price: </Box>
-              <Box className="product-details-price-value">
-                {"   "}
-                {pass.price} $
+              <Box className="product-details-description">
+                {pass.description}
+              </Box>
+              <Box className="product-details-price-Box">
+                <Box className="product-details-price">Price: </Box>
+                <Box className="product-details-price-value">
+                  {"   "}
+                  {pass.price} $
+                </Box>
               </Box>
             </Box>
           </Box>
-        </Box>
+        )}
 
         <hr />
 
@@ -137,11 +152,11 @@ export function ProductDetails() {
                 <Box key={index}>
                   {" "}
                   <Box className="product-review-details-title">
-                    {item.title}
+                    {item.name}
                   </Box>{" "}
-                  <Box>{item.email}</Box>{" "}
+                  <Box>{item.review}</Box>{" "}
                   <Box className="product-review-details-feedback">
-                    {item.feedback}
+                    {item.rating}
                   </Box>{" "}
                 </Box>
               );
