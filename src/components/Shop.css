@@ -60,37 +60,22 @@
     height: 100vh;
 }
 
-.DialogTitle {
-    width: 100%;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-}
-
 .DialogTitleText {
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-}
-
-.DialogTitleCartText {
-    font-size: 3rem;
+    text-align: center;
+    font-size: 1.3rem;
     font-weight: 700;
     color: blue;
-}
-
-.CartCloseButton {
-    cursor: pointer;
-    font-weight: 700;
 }
 
 .DialogFooter {
     display: flex;
     justify-content: flex-end;
+    margin-top: 10px;
+    gap: 10px;
 }
 
 .DialogButton {
-    color: blue;
+    color: rgb(249, 249, 253);
     text-decoration: none;
 }
 
@@ -127,12 +112,9 @@
 }
 
 .noCartItems {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    font-size: 18px;
-    font-weight: 700;
-    padding-top: 20px;
+    height: auto;
+    width: 100%;
+    text-align: center;
 }
 
 .cartItems {
@@ -192,6 +174,7 @@
 
 .cartItemPrice {
     padding-left: 20px;
+    margin-left: 20px;
 }
 
 .cartTotalPrice {
@@ -495,23 +478,34 @@
 .customer-details-box {
     display: flex;
     flex-direction: row;
-    margin-top: 10px;
+    margin-top: 20px;
+    width: 100vw;
+    justify-content: space-between;
 }
 
 .customer-details-box-inner {
     width: auto;
     display: flex;
     flex-direction: column;
+    font-size: 18px;
 }
 
 .customer-details-items {
-    width: 50%;
+    width: 62%;
     display: flex;
     flex-direction: column;
     margin-left: 20px;
 }
 
+.customer-details-items-inner {
+    font-size: 20px;
+}
+
 .confirmation-of-order-button-box {
+    display: flex;
+    justify-content: space-between;
+    width: 60vw;
+
     margin-top: 20px;
     font-size: large;
     font-weight: 700;
@@ -521,6 +515,7 @@
     position: relative;
     background-size: cover;
     height: 100vh;
+    background-color: rgb(243, 252, 255);
 }
 
 .checkout-main-box-container {
