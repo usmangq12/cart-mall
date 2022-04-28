@@ -40,6 +40,14 @@ export function ProductDetails() {
     setPass(newPass);
   }, []);
 
+  useEffect(() => {
+    axios
+      .get(`https://backendapi.turing.com/products/${id}/reviews`)
+      .then((res) => {
+        setReview(res.data);
+      });
+  }, []);
+
   const handleClickOpen = () => {
     setOpen(true);
   };
@@ -55,7 +63,7 @@ export function ProductDetails() {
   };
 
   return (
-    <>
+    <Box className="product-main">
       <Box className="product-details-Main">
         {pass && (
           <Box className="product-details-container">
@@ -84,77 +92,83 @@ export function ProductDetails() {
           </Box>
         )}
 
-        <hr />
-
-        <Box className="product-details-review-Container">
-          <Box className="product-details-review-box">
-            <Box>
-              <FcRating className="product-details-review-icon" />
-            </Box>
-            <Box className="product-details-review-text">Reviews</Box>
-          </Box>
-          <Box className="product-details-review-textbox">
-            Review this product
-          </Box>
-          <Box className="product-details-review-title">
-            Share your thoughts with other customers
-          </Box>
-          <Box className="product-details-review-button">
-            <Button variant="contained" onClick={handleClickOpen}>
-              Write A Review
-            </Button>
-          </Box>
-          <Dialog open={open} onClose={handleClose}>
-            <DialogTitle>Write A Review</DialogTitle>
-            <DialogContent className="product-details-review-dialog">
+        <Box className="review-section">
+          <Box className="product-details-review-Container">
+            <Box className="product-details-review-box">
               <Box>
-                <Input
-                  placeholder="Review Title"
-                  onChange={(e) => setTitle(e.target.value)}
-                  className="product-details-review-Input-title"
-                />
-                <Box className="product-details-review-Input-email-Box">
-                  <Input
-                    placeholder="Email"
-                    onChange={(e) => setEmail(e.target.value)}
-                    className="product-details-review-Input-email"
-                  />
-                </Box>
-                <Box className="product-details-review-Input-feedback-box">
-                  <TextareaAutosize
-                    minRows={8}
-                    placeholder="Enter your feedback"
-                    onChange={(e) => setFeadback(e.target.value)}
-                    className="product-details-review-Input-feedback"
-                  />
-                </Box>
+                <FcRating className="product-details-review-icon" />
               </Box>
-            </DialogContent>
-            <DialogActions>
-              <Button onClick={handleClose}>Cancel</Button>
-              <Button
-                type="submit"
-                onClick={() => {
-                  handleClose();
-                  handelReview();
-                }}
-              >
-                Add Review
+              <Box className="product-details-review-text">Reviews</Box>
+            </Box>
+            <Box className="product-details-review-textbox">
+              Review this product
+            </Box>
+            <Box className="product-details-review-title">
+              Share your thoughts with other customers
+            </Box>
+            <Box className="product-details-review-button">
+              <Button variant="contained" onClick={handleClickOpen}>
+                Write A Review
               </Button>
-            </DialogActions>
-          </Dialog>
-        </Box>
+            </Box>
 
+            <Dialog open={open} onClose={handleClose}>
+              <DialogTitle>Write A Review</DialogTitle>
+              <DialogContent className="product-details-review-dialog">
+                <Box>
+                  <Input
+                    placeholder="Review Title"
+                    onChange={(e) => setTitle(e.target.value)}
+                    className="product-details-review-Input-title"
+                  />
+                  <Box className="product-details-review-Input-email-Box">
+                    <Input
+                      placeholder="Email"
+                      onChange={(e) => setEmail(e.target.value)}
+                      className="product-details-review-Input-email"
+                    />
+                  </Box>
+                  <Box className="product-details-review-Input-feedback-box">
+                    <TextareaAutosize
+                      minRows={8}
+                      placeholder="Enter your feedback"
+                      onChange={(e) => setFeadback(e.target.value)}
+                      className="product-details-review-Input-feedback"
+                    />
+                  </Box>
+                </Box>
+              </DialogContent>
+              <DialogActions>
+                <Button onClick={handleClose}>Cancel</Button>
+                <Button
+                  type="submit"
+                  onClick={() => {
+                    handleClose();
+                    handelReview();
+                  }}
+                >
+                  Add Review
+                </Button>
+              </DialogActions>
+            </Dialog>
+          </Box>
+        </Box>
         <Box>
           <Box className="product-review-details-container">
+
+            <Box  className="customer-reviews">Product Reviews</Box>
             {review.map((item, index) => {
               return (
-                <Box key={index}>
+                <Box className="product-reviews" key={index}>
                   {" "}
-                  <Box className="product-review-details-title">
-                    {item.name}
-                  </Box>{" "}
-                  <Box>{item.review}</Box>{" "}
+
+                  <Box className="product-review-details-header">
+                    <Box className="product-review-details-title">
+                      By {item.name}
+                    </Box>
+                    <Box> {item.created_on}</Box>
+                  </Box>
+                  <Box>{item.review}</Box>
                   <Box className="product-review-details-feedback">
                     {item.rating}
                   </Box>{" "}
@@ -164,6 +178,6 @@ export function ProductDetails() {
           </Box>
         </Box>
       </Box>
-    </>
+    </Box>
   );
 }
