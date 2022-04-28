@@ -1,11 +1,4 @@
-import {
-  Box,
-  Typography,
-  Button,
-  Dialog,
-  DialogContent,
-  DialogTitle,
-} from "@mui/material";
+import { Box, Button, Dialog, DialogContent, DialogTitle } from "@mui/material";
 import { Link } from "react-router-dom";
 import { useEffect } from "react";
 import "./Shop.css";
@@ -65,21 +58,15 @@ export default function Cart(props) {
     <Dialog open={open} onClose={handleClose}>
       <Box className="DialogBox">
         <DialogTitle>
-          <Box className="DialogTitle">
-            <Box className="DialogTitleText">
-              <Typography variant="h5" className="DialogTitleCartText">
-                My Shopping Cart
-              </Typography>
-
-              <Button className="CartCloseButton" onClick={handleClose}>
-                X
-              </Button>
-            </Box>
-          </Box>
+          <Box className="DialogTitleText">My Shopping Cart</Box>
         </DialogTitle>
         <DialogContent>
           <Box className="DialogContent">
-            <Box className="DialogContentHeader">Cart Items</Box>
+            {cartItems.length === 0 ? (
+              ""
+            ) : (
+              <Box className="DialogContentHeader">Cart Items</Box>
+            )}
             <Box className="clearCart">
               {cartItems.length >= 1 && (
                 <Button
@@ -92,7 +79,15 @@ export default function Cart(props) {
               )}
             </Box>
             {cartItems.length === 0 && (
-              <Box className="noCartItems">No items in cart</Box>
+              <Box className="noCartItems">
+                <img
+                  src="https://www.gamkart.com/frontend/img/empty-cart.png"
+                  alt="no items"
+                />
+                <Button variant="outlined" size="small" onClick={handleClose}>
+                  Continue Shopping
+                </Button>
+              </Box>
             )}
             <Box>
               {cartItems.map((item) => (
@@ -115,6 +110,7 @@ export default function Cart(props) {
                     >
                       +
                     </Button>
+                    <Box>{item.quantity}</Box>
                     <Button
                       className="cartItemDecreaseQuantityButton"
                       size="small"
@@ -126,25 +122,39 @@ export default function Cart(props) {
                     </Button>
                   </Box>
                   <Box className="cartItemPrice">
-                    {item.quantity} x $ {item.price}
+                    {" "}
+                    {"$"}
+                    {item.price * item.quantity}
                   </Box>
                 </Box>
               ))}
             </Box>
-            <Box className="cartTotalPrice">
-              Total Price:
-              <Box className="cartTotalPriceText">$ {totalPrice}</Box>
-            </Box>
-            <Box className="DialogFooter">
-              <Button className="DialogButton" onClick={handleClose}>
-                Cancel
-              </Button>
-              <Button>
-                <Link to="/shippingdetails" className="DialogButton">
-                  Check Out
-                </Link>
-              </Button>
-            </Box>
+            {cartItems.length === 0 ? (
+              ""
+            ) : (
+              <Box className="cartTotalPrice">
+                Total Price:
+                <Box className="cartTotalPriceText">$ {totalPrice}</Box>
+              </Box>
+            )}
+            {cartItems.length === 0 ? (
+              ""
+            ) : (
+              <Box className="DialogFooter">
+                <Button
+                  variant="contained"
+                  className="DialogButton"
+                  onClick={handleClose}
+                >
+                  Cancel
+                </Button>
+                <Button variant="contained">
+                  <Link to="/shippingdetails" className="DialogButton">
+                    Check Out
+                  </Link>
+                </Button>
+              </Box>
+            )}
           </Box>
         </DialogContent>
       </Box>

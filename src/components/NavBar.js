@@ -3,10 +3,11 @@ import { Container, Box, Input, Typography } from "@mui/material";
 import { FiShoppingCart } from "react-icons/fi";
 import { SiShopware } from "react-icons/si";
 import Homepage from "./Homepage/homepage";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import Cart from "./Cart";
-import "./Shop.css";
 import axios from "axios";
+import { GET_DEFAULT_PRODUCTS_LIST } from "./shopping redux/Actions";
+import "./Shop.css";
 
 export function NavBar() {
   const [open, setOpen] = useState(false);
@@ -14,22 +15,23 @@ export function NavBar() {
   const [getProducts, updateGetProducts] = useState([]);
   const [cartItems, updateCartItems] = useState([]);
 
+  const dispatch = useDispatch();
+
   useEffect(() => {
-    axios.get("https://backendapi.turing.com/products?page=1&limit=100").then((res) => {
-      console.log(res.data.rows);
-      updateGetProducts(res.data.rows);
-    });
+    dispatch({ type: GET_DEFAULT_PRODUCTS_LIST });
   }, []);
 
-  useEffect(() => {
-    axios.get(`https://backendapi.turing.com/products/search?query_string=${searchValue}`).then((res) => {
-      console.log(res.data.rows);
-      updateGetProducts(res.data.rows);
-    });
-  }, [searchValue]);
-
-
   const products = useSelector((state) => state.productsReducer.Products);
+
+  useEffect(() => {
+    axios
+      .get(
+        `https://backendapi.turing.com/products/search?query_string=${searchValue}`
+      )
+      .then((res) => {
+        updateGetProducts(res.data.rows);
+      });
+  }, [searchValue]);
 
   useEffect(() => {
     updateGetProducts(products);
