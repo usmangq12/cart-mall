@@ -3,8 +3,6 @@
     flex-direction: column;
     margin-bottom: 2rem;
     background-color: #f0f0f0;
-
-
 }
 
 .NavbarContainer {
@@ -12,7 +10,6 @@
     justify-content: space-between;
     align-items: center;
     width: 100%;
-
 }
 
 .BlinkiflyBox {
@@ -31,7 +28,6 @@
     font-size: 1.4rem;
     color: orange;
 }
-
 
 .CartIconText {
     margin: 3px;
@@ -57,7 +53,6 @@
     margin-right: 12rem;
     cursor: pointer;
     padding-right: 20px;
-
 }
 
 .DialogBox {
@@ -189,7 +184,6 @@
     font-size: 18px;
     color: black;
     cursor: pointer;
-
 }
 
 .cartItemDecreaseQuantityButton:active {
@@ -213,7 +207,7 @@
 
 .cartTotalPriceText {
     display: flex;
-    padding-left: 50%
+    padding-left: 50%;
 }
 
 .finish-order {
@@ -243,7 +237,7 @@
 
 .product-details-container {
     display: flex;
-    flex-direction: row
+    flex-direction: row;
 }
 
 .product-details-image {
@@ -266,14 +260,12 @@
     font-size: 2rem;
     font-weight: bold;
     margin-bottom: 1rem;
-
 }
 
 .product-details-Features {
     font-size: 2rem;
     font-weight: bold;
     margin-top: 2rem;
-
 }
 
 .product-details-description {
@@ -291,11 +283,10 @@
 .product-details-price {
     font-size: 1.5rem;
     font-weight: bold;
-
 }
 
 .product-details-price-value {
-    font-size: 1.5rem
+    font-size: 1.5rem;
 }
 
 .product-details-review-box {
@@ -310,7 +301,7 @@
 }
 
 .product-details-review-icon {
-    font-size: 50px
+    font-size: 50px;
 }
 
 .product-details-review-text {
@@ -320,7 +311,7 @@
 
 .product-details-review-textbox {
     font-size: 1.5rem;
-    font-weight: bold
+    font-weight: bold;
 }
 
 .product-details-review-title {
@@ -335,17 +326,16 @@
 
 .product-details-review-dialog {
     width: 400px;
-    height: 40vh
+    height: 40vh;
 }
 
 .product-details-review-Input-title {
     padding: 5px;
-    width: 400px
+    width: 400px;
 }
 
 .product-details-review-Input-email-Box {
     margin-top: 10px;
-
 }
 
 .product-details-review-Input-email {
@@ -354,21 +344,21 @@
 }
 
 .product-details-review-Input-feedback-box {
-    margin-top: 10px
+    margin-top: 10px;
 }
 
 .product-details-review-Input-feedback {
-    width: 400px
+    width: 400px;
 }
 
 .product-review-details-container {
     margin-left: 2rem;
-    background-color: #e7e8e1
+    background-color: #e7e8e1;
 }
 
 .product-review-details-title {
     font-size: 1.5rem;
-    font-weight: bold
+    font-weight: bold;
 }
 
 .product-review-details-feedback {
@@ -572,5 +562,68 @@
 
 .checkout-button-link {
     text-decoration: none;
-    color: white
+    color: white;
+}
+
+.category-list {
+    display: flex;
+    flex-direction: row;
+    gap: 10px;
+}
+
+.category-list-item {
+    width: 20%;
+    height: auto;
+    margin-left: 0.5rem;
+    border-radius: 10px;
+    padding: 1rem;
+    background-color: #f5f5f5;
+}
+
+.product-list {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    width: 100%;
+    height: 90vh;
+    gap: 30px;
+}
+
+.product-list-item {
+    width: 30%;
+    height: auto;
+    border-radius: 5px;
+    background-color: #f5f5f5;
+    box-shadow: 0px 0px 5px #000000;
+    text-decoration: none;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    margin-right: 1rem;
+}
+
+.product-list-item-link {
+    text-decoration: none;
+    color: black;
+}
+
+.product-list-item-image {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.product-list-item-name {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin: 5px;
+}
+
+.product-list-item-name-text {
+    font-weight: bold;
 }

@@ -13,21 +13,29 @@ export function NavBar() {
   const [searchValue, setSearchValue] = useState("");
   const [getProducts, updateGetProducts] = useState([]);
   const [cartItems, updateCartItems] = useState([]);
+  const [searchProducts, updateSearchProducts] = useState([]);
 
   useEffect(() => {
-    axios.get("https://backendapi.turing.com/products?page=1&limit=100").then((res) => {
-      console.log(res.data.rows);
-      updateGetProducts(res.data.rows);
-    });
+    axios
+      .get("https://backendapi.turing.com/products?page=1&limit=100")
+      .then((res) => {
+        // console.log(res.data.rows);
+        updateGetProducts(res.data.rows);
+      });
   }, []);
 
   useEffect(() => {
-    axios.get(`https://backendapi.turing.com/products/search?query_string=${searchValue}`).then((res) => {
-      console.log(res.data.rows);
-      updateGetProducts(res.data.rows);
-    });
+    axios
+      .get(
+        `https://backendapi.turing.com/products/search?query_string=${searchValue}`
+      )
+      .then((res) => {
+        // console.log(res.data.rows);
+        updateSearchProducts(res.data.rows);
+      });
   }, [searchValue]);
 
+  console.log(searchProducts);
 
   const products = useSelector((state) => state.productsReducer.Products);
 

@@ -131,7 +131,7 @@ export function ProductDetails() {
         </Box>
 
         <Box>
-          <Box sx={{}} className="product-review-details-container">
+          <Box className="product-review-details-container">
             {review.map((item, index) => {
               return (
                 <Box key={index}>
