@@ -4,7 +4,7 @@ import { FiShoppingCart } from "react-icons/fi";
 import { SiShopware } from "react-icons/si";
 import Homepage from "./Homepage/homepage";
 import { useDispatch, useSelector } from "react-redux";
-import Cart from "./Cart";
+import { Cart } from "./Cart";
 import axios from "axios";
 import { GET_DEFAULT_PRODUCTS_LIST } from "./shopping redux/Actions";
 import "./Shop.css";
