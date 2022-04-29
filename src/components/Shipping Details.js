@@ -10,6 +10,12 @@ import {
   Typography,
   Button,
   StepLabel,
+  Table,
+  TableHead,
+  TableRow,
+  TableCell,
+  TableBody,
+  TableContainer,
 } from "@mui/material";
 import { Link } from "react-router-dom";
 
@@ -33,6 +39,7 @@ export function ShippingDetails() {
   const [cardNumber, setCardNumber] = useState("");
   const [expiryDate, setExpiryDate] = useState("");
   const [cvv, setCvv] = useState("");
+  const [validationError, setValidationError] = useState("");
 
   const [customerDetails, setCustomerDetails] = useState([]);
 
@@ -47,8 +54,21 @@ export function ShippingDetails() {
   const CartItems = JSON.parse(localStorage.getItem("cartItems"));
 
   const nextStep = () => {
-    if (steps.length) {
-      setActiveStep(activeStep + 1);
+    if (activeStep === 0) {
+      if (fullName === "" || email === "" || phoneNumber === "") {
+        setValidationError("Please fill all the fields");
+      } else {
+        setValidationError("");
+        setActiveStep(activeStep + 1);
+      }
+    }
+    if (activeStep === 1) {
+      if (city === "" || zipCode === "" || country === "" || province === "") {
+        setValidationError("Please fill all the fields");
+      } else {
+        setValidationError("");
+        setActiveStep(activeStep + 1);
+      }
     }
   };
 
@@ -75,7 +95,20 @@ export function ShippingDetails() {
       },
     ];
     setCustomerDetails(CustomerData);
-    setActiveStep(activeStep + 1);
+
+    if (activeStep === 2) {
+      if (
+        paymentMethod === "" ||
+        cardNumber === "" ||
+        expiryDate === "" ||
+        cvv === ""
+      ) {
+        setValidationError("Please fill all the fields");
+      } else {
+        setValidationError("");
+        setActiveStep(activeStep + 1);
+      }
+    }
   };
 
   const getStepContent = (stepIndex) => {
@@ -89,6 +122,7 @@ export function ShippingDetails() {
             </Typography>
 
             <Input
+              error={validationError}
               type="text"
               className="full-name"
               placeholder="Full Name"
@@ -101,6 +135,7 @@ export function ShippingDetails() {
               className="email"
               placeholder="Email"
               value={email}
+              error={validationError}
               onChange={(e) => setEmail(e.target.value)}
             />
             <Input
@@ -108,6 +143,7 @@ export function ShippingDetails() {
               className="phone-number"
               placeholder="Phone"
               value={phoneNumber}
+              error={validationError}
               onChange={(e) => setPhoneNumber(e.target.value)}
             />
           </Box>
@@ -124,6 +160,7 @@ export function ShippingDetails() {
                 className="street-address"
                 placeholder="Street Address"
                 value={streetAddress}
+                error={validationError}
                 onChange={(e) => setStreetAddress(e.target.value)}
               />
             </Box>
@@ -133,6 +170,7 @@ export function ShippingDetails() {
                 className="city"
                 placeholder="City"
                 value={city}
+                error={validationError}
                 onChange={(e) => setCity(e.target.value)}
               />
               <Input
@@ -140,6 +178,7 @@ export function ShippingDetails() {
                 type="number"
                 placeholder="Postal/Zip Code"
                 value={zipCode}
+                error={validationError}
                 onChange={(e) => setZipCode(e.target.value)}
               />
             </Box>
@@ -149,6 +188,7 @@ export function ShippingDetails() {
                 className="country"
                 placeholder="Country"
                 value={country}
+                error={validationError}
                 onChange={(e) => setCountry(e.target.value)}
               />
               <Input
@@ -156,6 +196,7 @@ export function ShippingDetails() {
                 className="province"
                 placeholder="Province"
                 value={province}
+                error={validationError}
                 onChange={(e) => setProvince(e.target.value)}
               />
             </Box>
@@ -198,6 +239,7 @@ export function ShippingDetails() {
               type="number"
               placeholder="CARD NUMBER"
               value={cardNumber}
+              error={validationError}
               onChange={(e) => setCardNumber(e.target.value)}
             />
             <Input
@@ -205,6 +247,7 @@ export function ShippingDetails() {
               type="number"
               placeholder="CVV (3 digits)"
               value={cvv}
+              error={validationError}
               onChange={(e) => setCvv(e.target.value)}
             />
             <Input
@@ -212,6 +255,7 @@ export function ShippingDetails() {
               type="date"
               placeholder="EXPIRY DATE"
               value={expiryDate}
+              error={validationError}
               onChange={(e) => setExpiryDate(e.target.value)}
             />
           </Box>
@@ -219,51 +263,119 @@ export function ShippingDetails() {
       case 3:
         return (
           <Box className="confirmation-of-order-main-box">
-            <Typography variant="h4">Confirm Order</Typography>
+            <Typography
+              variant="h4"
+              sx={{
+                fontSize: "2rem",
+                fontWeight: "bold",
+                color: "primary.main",
+                borderBottom: "2px solid #ccc",
+              }}
+            >
+              Confirm Order
+            </Typography>
 
             {customerDetails.map((item, index) => (
               <Box className="customer-details-box" key={index}>
                 <Box className="customer-details-box-inner">
-                  <address>
+                  <Typography
+                    sx={{
+                      fontSize: "1.5rem",
+                      fontWeight: "bold",
+                    }}
+                  >
+                    Customer Details:
+                  </Typography>
+                  <address className="customer-details-box-inner-address">
                     <Box>{item.fullName}</Box>
                     <Box>{item.email}</Box>
                     <Box>{item.phoneNumber}</Box>
-                    <Box>{item.streetAddress}</Box>
-                    <Box>{item.city}</Box>
-                    <Box>{item.province}</Box>
-                    <Box>{item.country}</Box>
+                    <Box>{item.streetAddress},</Box>
+                    <Box>{item.city},</Box>
+                    <Box>{item.province},</Box>
+                    <Box>{item.country},</Box>
                     <Box>{item.zipCode}</Box>
                   </address>
+                  <Box className="confirmation-of-order-button-box">
+                    <Box>Apply Voucher: </Box>
+
+                    <RadioGroup row>
+                      <FormControlLabel
+                        value={"zxvw34mnb"}
+                        control={<Radio />}
+                        label="zxvw34mnb"
+                        onClick={handleVoucher}
+                      />
+                    </RadioGroup>
+                  </Box>
+                  <Box className="total-price-box">
+                    Total Price: {"$"}
+                    {discountedPrice.toFixed(2)}
+                  </Box>
                 </Box>
                 <Box className="customer-details-items">
-                  <Typography variant="h5">Items:</Typography>
-                  {CartItems.map((item, index) => (
-                    <Box className="customer-details-items-inner">
-                      <Box>
-                        {item.name} {"$"}
-                        {item.price} x {item.quantity}
-                      </Box>
-                    </Box>
-                  ))}
+                  <Typography
+                    sx={{
+                      fontSize: "1.5rem",
+                      fontWeight: "bold",
+                    }}
+                  >
+                    {" "}
+                    Customer Items:
+                  </Typography>
+                  <TableContainer
+                    sx={{
+                      maxHeight: "50vh",
+                      maxWidth: "40vw",
+                    }}
+                  >
+                    <Table stickyHeader>
+                      <TableHead>
+                        <TableRow>
+                          <TableCell
+                            sx={{
+                              fontSize: "1rem",
+                              fontWeight: "bold",
+                            }}
+                          >
+                            Name
+                          </TableCell>
+                          <TableCell
+                            sx={{
+                              fontSize: "1rem",
+                              fontWeight: "bold",
+                            }}
+                          >
+                            Quantity
+                          </TableCell>
+                          <TableCell
+                            sx={{
+                              fontSize: "1rem",
+                              fontWeight: "bold",
+                            }}
+                          >
+                            Price
+                          </TableCell>
+                        </TableRow>
+                      </TableHead>
+                      {CartItems.map((item, index) => (
+                        <TableBody key={index}>
+                          <TableRow>
+                            <TableCell>{item.name}</TableCell>
+                            <TableCell>{item.quantity}</TableCell>
+                            <TableCell>
+                              {" "}
+                              {"$"}
+                              {item.price}
+                            </TableCell>
+                          </TableRow>
+                        </TableBody>
+                      ))}
+                    </Table>
+                  </TableContainer>
                 </Box>
               </Box>
             ))}
-
-            <Box className="confirmation-of-order-button-box">
-              <Box>
-                <Box>Apply Voucher: </Box>
-
-                <RadioGroup row name="radio-buttons-group">
-                  <FormControlLabel
-                    value={"zxvw34mnb"}
-                    control={<Radio />}
-                    label="zxvw34mnb"
-                    onClick={handleVoucher}
-                  />
-                </RadioGroup>
-              </Box>
-              <h2>Total Price {discountedPrice}</h2>
-            </Box>
           </Box>
         );
       default:

@@ -21,49 +21,49 @@ export default function Homepage(props) {
     },
     {
       CategoryName: "Italian",
-      " id": 2,
+      id: 2,
     },
     {
       CategoryName: "Irish",
-      " id": 3,
+      id: 3,
     },
     {
       CategoryName: "Animal",
-      " id": 4,
+      id: 4,
     },
     {
       CategoryName: "Flower",
-      " id": 5,
+      id: 5,
     },
     {
       CategoryName: "Christmas",
-      " id": 6,
+      id: 6,
     },
     {
       CategoryName: "Valentine's",
-      " id": 7,
+      id: 7,
     },
   ];
 
   return (
-    <Box>
-      <Box className="category-list">
-        <Box className="category-list-item">
-          <Typography variant="h4">Categories:</Typography>
-          {CategoryList.map((category, index) => (
-            <ListItemButton
-              key={category.id}
-              sx={{
-                marginTop: "1rem",
-              }}
-              onClick={() => {
-                dispatch({ type: GET_PRODUCTS_LIST, payload: index + 1 });
-              }}
-            >
-              <ListItemText primary={category.CategoryName} />
-            </ListItemButton>
-          ))}
-        </Box>
+    <Box className="category-list">
+      <Box className="category-list-item">
+        <Typography variant="h4">Categories:</Typography>
+        {CategoryList.map((category) => (
+          <ListItemButton
+            key={category.id}
+            sx={{
+              marginTop: "1rem",
+            }}
+            onClick={() => {
+              dispatch({ type: GET_PRODUCTS_LIST, payload: category.id });
+            }}
+          >
+            <ListItemText primary={category.CategoryName} />
+          </ListItemButton>
+        ))}
+      </Box>
+      <Box>
         <Box className="product-list">
           {getProducts.map((product) => {
             return (

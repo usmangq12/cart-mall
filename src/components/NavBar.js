@@ -19,7 +19,7 @@ export function NavBar() {
 
   useEffect(() => {
     dispatch({ type: GET_DEFAULT_PRODUCTS_LIST });
-  }, []);
+  }, [dispatch]);
 
   const products = useSelector((state) => state.productsReducer.Products);
 
@@ -30,8 +30,17 @@ export function NavBar() {
       )
       .then((res) => {
         updateGetProducts(res.data.rows);
+        if (searchValue === "") {
+          dispatch({ type: GET_DEFAULT_PRODUCTS_LIST });
+        }
       });
-  }, [searchValue]);
+  }, [searchValue, dispatch]);
+
+  useEffect(() => {
+    if (searchValue === "") {
+      updateGetProducts(products);
+    }
+  }, [searchValue, products]);
 
   useEffect(() => {
     updateGetProducts(products);
@@ -58,26 +67,6 @@ export function NavBar() {
     }
   };
 
-  const handleSearch = () => {
-    let filteredArray = products.filter((getSearchItem) => {
-      if (
-        getSearchItem.name.toUpperCase().includes(searchValue.toUpperCase())
-      ) {
-        return true;
-      } else if (
-        getSearchItem.description
-          .toUpperCase()
-          .includes(searchValue.toUpperCase())
-      ) {
-        return true;
-      } else {
-        return false;
-      }
-    });
-
-    updateGetProducts(filteredArray);
-  };
-
   const handleClickOpen = () => {
     setOpen(true);
   };
@@ -102,7 +91,9 @@ export function NavBar() {
               className="InputSearch"
               value={searchValue}
               onChange={(e) => setSearchValue(e.target.value)}
-              onKeyUp={handleSearch}
+              onKeyDown={(e) => {
+                setSearchValue(e.target.value);
+              }}
             />
             <Box className="CartIcon">
               <FiShoppingCart
