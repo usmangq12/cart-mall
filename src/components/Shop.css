@@ -1,15 +1,17 @@
 .NavBarMain {
   display: flex;
   flex-direction: column;
-  margin-bottom: 2rem;
-  background-color: #f0f0f0;
+  background-color: #f5f5f5;
+  position: fixed;
+  top: 0;
+  width: 100%;
+  padding: 2px;
 }
 
 .NavbarContainer {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  width: 100%;
 }
 
 .BlinkiflyBox {
@@ -372,12 +374,15 @@
 }
 
 .product-review-details-title {
-  font-size: 1.5rem;
+  font-size: 1rem;
   font-weight: bold;
+  margin-bottom: 1rem;
+  color: #383838;
 }
-
-.product-review-details-feedback {
-  margin-top: 10px;
+.product-review-createon {
+  display: flex;
+  text-align: center;
+  align-items: center;
 }
 
 .customer-details {
@@ -596,16 +601,19 @@
   display: flex;
   flex-direction: row;
   gap: 10px;
+  margin-top: 5%;
 }
 
 .category-list-item {
-  width: 20%;
+  width: auto;
   height: auto;
   margin-left: 0.5rem;
   border-radius: 10px;
   padding: 1rem;
   background-color: #f5f5f5;
 }
+
+
 
 .product-list {
   display: flex;
@@ -619,7 +627,7 @@
 
 .product-list-item {
   width: 30%;
-  height: auto;
+  height: 75vh;
   border-radius: 5px;
   text-decoration: none;
   display: flex;
@@ -631,7 +639,8 @@
 
 .product-list-item:hover {
   box-shadow: 0px 0px 5px #000000;
-  background-color: #f5f5f5;
+  background-color: #f6f6f6;
+  border-radius: 5px;
 }
 
 .product-list-item-link {
@@ -642,8 +651,9 @@
 .product-list-item-image {
   display: flex;
   flex-direction: column;
-  justify-content: space-between;
   align-items: center;
+  border-radius: 5px;
+  background-color: #f9f9f9;
 }
 
 .product-list-item-name {
