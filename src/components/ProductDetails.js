@@ -8,6 +8,7 @@ import { useParams } from "react-router-dom";
 import { useSelector } from "react-redux";
 import { useState, useEffect } from "react";
 import axios from "axios";
+import ReactStars from "react-rating-stars-component";
 
 export function ProductDetails() {
   const [open, setOpen] = useState(false);
@@ -67,12 +68,15 @@ export function ProductDetails() {
       <Box className="product-details-Main">
         {pass && (
           <Box className="product-details-container">
+          
             <Box
+            
               component={"img"}
               className="product-details-image"
               src="
           https://freepngimg.com/thumb/categories/627.png"
             />
+            
 
             <Box className="product-details-info">
               <Box className="product-details-title">Title: {pass.name}</Box>
@@ -155,23 +159,29 @@ export function ProductDetails() {
         </Box>
         <Box>
           <Box className="product-review-details-container">
-
-            <Box  className="customer-reviews">Product Reviews</Box>
+            <Box className="customer-reviews">Product Reviews</Box>
             {review.map((item, index) => {
               return (
                 <Box className="product-reviews" key={index}>
-                  {" "}
-
+                  {" "}    
                   <Box className="product-review-details-header">
-                    <Box className="product-review-details-title">
+                  <Box className="product-review-details-feedback">
+                    {/* Rating 5/{item.rating} */}
+                    <ReactStars
+                      count={5}
+                      value={item.rating}
+                      size={24}
+                      activeColor="#ffd700"
+                    />
+                  </Box>
+                    <Box className="product-review-createon"> {item.created_on}</Box>
+                  </Box>
+
+                  <Box className="product-review-details-title">
                       By {item.name}
                     </Box>
-                    <Box> {item.created_on}</Box>
-                  </Box>
                   <Box>{item.review}</Box>
-                  <Box className="product-review-details-feedback">
-                    {item.rating}
-                  </Box>{" "}
+                 
                 </Box>
               );
             })}
