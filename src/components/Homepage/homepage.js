@@ -13,7 +13,7 @@ import "../Shop.css";
 export default function Homepage(props) {
   const { getProducts, handleAddProduct } = props;
   const dispatch = useDispatch();
-
+  
   const CategoryList = [
     {
       CategoryName: "French",
@@ -44,7 +44,7 @@ export default function Homepage(props) {
       id: 7,
     },
   ];
-
+  
   return (
     <Box className="category-list">
       <Box className="category-list-item">

@@ -76,6 +76,7 @@ export function NavBar() {
   };
   return (
     <>
+      <Box className="nav-bar-container">
       <Box className="NavBarMain">
         <Container>
           <Box className="NavbarContainer">
@@ -108,15 +109,16 @@ export function NavBar() {
           </Box>
         </Container>
       </Box>
-
+      </Box>
       <Cart
         cartItems={cartItems}
         updateCartItems={updateCartItems}
         handleClose={handleClose}
         open={open}
       />
-
+        
       <Homepage getProducts={getProducts} handleAddProduct={handleAddProduct} />
+     
     </>
   );
 }
