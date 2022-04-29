@@ -47,7 +47,7 @@
 }
 
 .FiShoppingCart {
-  font-size: 1rem;
+  font-size: 1.2rem;
   color: orange;
 }
 
@@ -83,7 +83,7 @@
 }
 
 .DialogContent {
-  margin: 30px auto;
+  margin: 10px auto;
 }
 
 .DialogContentHeader {
@@ -95,6 +95,8 @@
   color: #0596f7;
   margin-bottom: 30px;
   font-weight: 700;
+  padding: 10px;
+  border-bottom: #0596f7 solid 2px;
 }
 
 .clearCart {
@@ -170,27 +172,17 @@
   text-align: center;
 }
 
-.cartTable {
-  border-collapse: collapse;
-  border: 1px solid black;
-  margin-top: 20px;
-}
-
-.cartTableHead {
-  border-bottom: 1px solid black;
-}
-
 .cartTotalPrice {
   display: flex;
-  justify-content: center;
+  justify-content: flex-end;
   align-items: center;
-  border: 2px solid black;
   padding-top: 20px;
   padding-bottom: 20px;
-  font-size: 20px;
+  font-size: 30px;
+  color: #0596f7;
   font-weight: 700;
   margin-top: 20px;
-  margin-right: 20px;
+  margin-right: 50px;
 }
 
 .finish-order {
@@ -477,10 +469,6 @@
   font-size: 1.3rem;
 }
 
-.radio-buttons-group {
-  margin-top: 10px;
-}
-
 .card-number {
   margin-top: 5px;
   padding: 3px;
@@ -509,13 +497,12 @@
   display: flex;
   flex-direction: column;
   height: auto;
-  width: 400px;
+  width: auto;
 }
 
 .customer-details-box {
   display: flex;
   flex-direction: row;
-  margin-top: 20px;
   width: 100vw;
   justify-content: space-between;
 }
@@ -525,27 +512,33 @@
   display: flex;
   flex-direction: column;
   font-size: 18px;
+  margin-top: 10px;
 }
 
 .customer-details-items {
-  width: 62%;
+  width: 75%;
   display: flex;
   flex-direction: column;
-  margin-left: 20px;
+  margin-top: 10px;
 }
 
-.customer-details-items-inner {
-  font-size: 20px;
+.customer-details-box-inner-address {
+  border-radius: 5px;
+  width: 20vw;
+  padding: 0.5rem;
 }
 
 .confirmation-of-order-button-box {
-  display: flex;
-  justify-content: space-between;
-  width: 60vw;
-
-  margin-top: 20px;
+  margin-top: 1rem;
   font-size: large;
   font-weight: 700;
+}
+
+.total-price-box {
+  font-size: 1.5rem;
+  font-weight: bold;
+  margin-bottom: 10px;
+  color: #0596f7;
 }
 
 .checkout-main-box {
@@ -620,7 +613,7 @@
   flex-direction: row;
   flex-wrap: wrap;
   justify-content: space-between;
-  width: 100%;
+  width: auto;
   height: 90vh;
   gap: 30px;
 }

@@ -7,6 +7,8 @@ import { FcRating } from "react-icons/fc";
 import { useParams } from "react-router-dom";
 import { useSelector } from "react-redux";
 import { useState, useEffect } from "react";
+import ReactStars from "react-rating-stars-component";
+
 import axios from "axios";
 import ReactStars from "react-rating-stars-component";
 
@@ -33,13 +35,13 @@ export function ProductDetails() {
         console.log(res.data);
         setReview(res.data);
       });
-  }, []);
+  }, [id]);
 
   useEffect(() => {
     const newPass = Items.find((item) => item.product_id === parseInt(id));
 
     setPass(newPass);
-  }, []);
+  }, [Items, id]);
 
   useEffect(() => {
     axios
@@ -47,7 +49,7 @@ export function ProductDetails() {
       .then((res) => {
         setReview(res.data);
       });
-  }, []);
+  }, [id]);
 
   const handleClickOpen = () => {
     setOpen(true);
@@ -163,6 +165,7 @@ export function ProductDetails() {
             {review.map((item, index) => {
               return (
                 <Box className="product-reviews" key={index}>
+
                   {" "}    
                   <Box className="product-review-details-header">
                   <Box className="product-review-details-feedback">
@@ -181,6 +184,7 @@ export function ProductDetails() {
                       By {item.name}
                     </Box>
                   <Box>{item.review}</Box>
+
                  
                 </Box>
               );

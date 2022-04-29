@@ -1,7 +1,6 @@
 import {
   Box,
   Button,
-  Dialog,
   DialogContent,
   TableContainer,
   Table,
@@ -98,13 +97,11 @@ export function Cart(props) {
               ""
             ) : (
               <TableContainer sx={{ maxHeight: 340 }}>
-                <Table stickyHeader className="cartTable">
+                <Table stickyHeader>
                   <TableHead>
                     <TableRow>
                       <TableCell
                         sx={{
-                          borderBottom: "1px solid black",
-                          borderRight: "1px solid black",
                           textAlign: "center",
                           fontSize: "20px",
                           fontWeight: "bold",
@@ -114,8 +111,6 @@ export function Cart(props) {
                       </TableCell>
                       <TableCell
                         sx={{
-                          borderBottom: "1px solid black",
-                          borderRight: "1px solid black",
                           textAlign: "center",
                           fontSize: "20px",
                           fontWeight: "bold",
@@ -125,8 +120,6 @@ export function Cart(props) {
                       </TableCell>
                       <TableCell
                         sx={{
-                          borderBottom: "1px solid black",
-                          borderRight: "1px solid black",
                           textAlign: "center",
                           fontSize: "20px",
                           fontWeight: "bold",
@@ -136,8 +129,6 @@ export function Cart(props) {
                       </TableCell>
                       <TableCell
                         sx={{
-                          borderBottom: "1px solid black",
-                          borderRight: "1px solid black",
                           textAlign: "center",
                           fontSize: "20px",
                           fontWeight: "bold",
@@ -147,8 +138,6 @@ export function Cart(props) {
                       </TableCell>
                       <TableCell
                         sx={{
-                          borderBottom: "1px solid black",
-                          borderRight: "1px solid black",
                           textAlign: "center",
                           fontSize: "20px",
                           fontWeight: "bold",
@@ -163,8 +152,6 @@ export function Cart(props) {
                     <TableRow key={item.product_id}>
                       <TableCell
                         sx={{
-                          borderBottom: "1px solid black",
-                          borderRight: "1px solid black",
                           textAlign: "center",
                         }}
                       >
@@ -176,30 +163,15 @@ export function Cart(props) {
                           className="cartItemImage"
                         />
                       </TableCell>
-                      <TableCell
-                        sx={{
-                          borderBottom: "1px solid black",
-                          borderRight: "1px solid black",
-                        }}
-                      >
+                      <TableCell>
                         <Box className="cartItemName"> {item.name}</Box>
                       </TableCell>
-                      <TableCell
-                        sx={{
-                          borderBottom: "1px solid black",
-                          borderRight: "1px solid black",
-                        }}
-                      >
+                      <TableCell>
                         <Box className="cartItemPrice">
                           {"$"} {(item.price * item.quantity).toFixed(2)}
                         </Box>
                       </TableCell>
-                      <TableCell
-                        sx={{
-                          borderBottom: "1px solid black",
-                          borderRight: "1px solid black",
-                        }}
-                      >
+                      <TableCell>
                         <Box className="cartItemQuantityBox">
                           <Button
                             size="small"
@@ -226,14 +198,17 @@ export function Cart(props) {
                       </TableCell>
                       <TableCell
                         sx={{
-                          borderBottom: "1px solid black",
                           textAlign: "center",
                         }}
                       >
-                        <AiFillDelete
-                          className="cartItemRemoveButton"
+                        <Button
+                          variant="contained"
+                          color="error"
                           onClick={() => RemoveProduct(item)}
-                        />
+                          startIcon={<AiFillDelete />}
+                        >
+                          Delete
+                        </Button>
                       </TableCell>
                     </TableRow>
                   ))}
@@ -245,7 +220,10 @@ export function Cart(props) {
             ) : (
               <Box className="cartTotalPrice">
                 <Box>Total Price:</Box>
-                <Box>$ {totalPrice.toFixed(2)}</Box>
+                <Box>
+                  {"$"}
+                  {totalPrice.toFixed(2)}
+                </Box>
               </Box>
             )}
             {cartItems.length === 0 ? (
