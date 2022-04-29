@@ -7,6 +7,8 @@ import { FcRating } from "react-icons/fc";
 import { useParams } from "react-router-dom";
 import { useSelector } from "react-redux";
 import { useState, useEffect } from "react";
+import ReactStars from "react-rating-stars-component";
+
 import axios from "axios";
 
 export function ProductDetails() {
@@ -32,13 +34,13 @@ export function ProductDetails() {
         console.log(res.data);
         setReview(res.data);
       });
-  }, []);
+  }, [id]);
 
   useEffect(() => {
     const newPass = Items.find((item) => item.product_id === parseInt(id));
 
     setPass(newPass);
-  }, []);
+  }, [Items, id]);
 
   useEffect(() => {
     axios
@@ -46,7 +48,7 @@ export function ProductDetails() {
       .then((res) => {
         setReview(res.data);
       });
-  }, []);
+  }, [id]);
 
   const handleClickOpen = () => {
     setOpen(true);
@@ -155,23 +157,25 @@ export function ProductDetails() {
         </Box>
         <Box>
           <Box className="product-review-details-container">
-
-            <Box  className="customer-reviews">Product Reviews</Box>
+            <Box className="customer-reviews">Product Reviews</Box>
             {review.map((item, index) => {
               return (
                 <Box className="product-reviews" key={index}>
                   {" "}
-
                   <Box className="product-review-details-header">
                     <Box className="product-review-details-title">
+                      <ReactStars
+                        count={5}
+                        value={item.rating}
+                        size={24}
+                        activeColor="#ffd700"
+                      />
                       By {item.name}
                     </Box>
                     <Box> {item.created_on}</Box>
                   </Box>
                   <Box>{item.review}</Box>
-                  <Box className="product-review-details-feedback">
-                    {item.rating}
-                  </Box>{" "}
+                  <Box className="product-review-details-feedback"></Box>{" "}
                 </Box>
               );
             })}
