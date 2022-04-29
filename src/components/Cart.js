@@ -1,9 +1,21 @@
-import { Box, Button, Dialog, DialogContent, DialogTitle } from "@mui/material";
+import {
+  Box,
+  Button,
+  Dialog,
+  DialogContent,
+  TableContainer,
+  Table,
+  TableRow,
+  TableHead,
+  TableCell,
+  Modal,
+} from "@mui/material";
 import { Link } from "react-router-dom";
 import { useEffect } from "react";
+import { AiFillDelete } from "react-icons/ai";
 import "./Shop.css";
 
-export default function Cart(props) {
+export function Cart(props) {
   const { cartItems, updateCartItems, open, handleClose } = props;
 
   const handleClearCart = () => {
@@ -46,6 +58,12 @@ export default function Cart(props) {
     }
   };
 
+  const RemoveProduct = (product) => {
+    updateCartItems(
+      cartItems.filter((item) => item.product_id !== product.product_id)
+    );
+  };
+
   const totalPrice = cartItems.reduce((total, item) => {
     return total + item.price * item.quantity;
   }, 0);
@@ -55,11 +73,8 @@ export default function Cart(props) {
   }, [totalPrice]);
 
   return (
-    <Dialog open={open} onClose={handleClose}>
+    <Modal open={open} onClose={handleClose} className="cart-modal">
       <Box className="DialogBox">
-        <DialogTitle>
-          <Box className="DialogTitleText">My Shopping Cart</Box>
-        </DialogTitle>
         <DialogContent>
           <Box className="DialogContent">
             {cartItems.length === 0 ? (
@@ -67,74 +82,170 @@ export default function Cart(props) {
             ) : (
               <Box className="DialogContentHeader">Cart Items</Box>
             )}
-            <Box className="clearCart">
-              {cartItems.length >= 1 && (
-                <Button
-                  variant="contained"
-                  className="clearCartButton"
-                  onClick={handleClearCart}
-                >
-                  Clear Cart
-                </Button>
-              )}
-            </Box>
+
             {cartItems.length === 0 && (
               <Box className="noCartItems">
                 <img
                   src="https://www.gamkart.com/frontend/img/empty-cart.png"
                   alt="no items"
                 />
-                <Button variant="outlined" size="small" onClick={handleClose}>
+                <Button variant="contained" size="small" onClick={handleClose}>
                   Continue Shopping
                 </Button>
               </Box>
             )}
-            <Box>
-              {cartItems.map((item) => (
-                <Box key={item.product_id} className="cartItems">
-                  <Box>
-                    <img
-                      className="cartItemImage"
-                      src="https://freepngimg.com/thumb/categories/627.png"
-                      alt="cartItemImage"
-                    />
-                  </Box>
-                  <Box className="cartItemName">{item.name}</Box>
-                  <Box className="cartItemQuantity">
-                    <Button
-                      size="small"
-                      variant="contained"
-                      color="primary"
-                      className="cartItemIncreaseQuantityButton"
-                      onClick={() => InreaseQuantity(item)}
-                    >
-                      +
-                    </Button>
-                    <Box>{item.quantity}</Box>
-                    <Button
-                      className="cartItemDecreaseQuantityButton"
-                      size="small"
-                      variant="contained"
-                      color="error"
-                      onClick={() => DecreaseQuantity(item)}
-                    >
-                      -
-                    </Button>
-                  </Box>
-                  <Box className="cartItemPrice">
-                    {" "}
-                    {"$"}
-                    {item.price * item.quantity}
-                  </Box>
-                </Box>
-              ))}
-            </Box>
+            {cartItems.length === 0 ? (
+              ""
+            ) : (
+              <TableContainer sx={{ maxHeight: 340 }}>
+                <Table stickyHeader className="cartTable">
+                  <TableHead>
+                    <TableRow>
+                      <TableCell
+                        sx={{
+                          borderBottom: "1px solid black",
+                          borderRight: "1px solid black",
+                          textAlign: "center",
+                          fontSize: "20px",
+                          fontWeight: "bold",
+                        }}
+                      >
+                        Image
+                      </TableCell>
+                      <TableCell
+                        sx={{
+                          borderBottom: "1px solid black",
+                          borderRight: "1px solid black",
+                          textAlign: "center",
+                          fontSize: "20px",
+                          fontWeight: "bold",
+                        }}
+                      >
+                        Product
+                      </TableCell>
+                      <TableCell
+                        sx={{
+                          borderBottom: "1px solid black",
+                          borderRight: "1px solid black",
+                          textAlign: "center",
+                          fontSize: "20px",
+                          fontWeight: "bold",
+                        }}
+                      >
+                        Price
+                      </TableCell>
+                      <TableCell
+                        sx={{
+                          borderBottom: "1px solid black",
+                          borderRight: "1px solid black",
+                          textAlign: "center",
+                          fontSize: "20px",
+                          fontWeight: "bold",
+                        }}
+                      >
+                        Quantity
+                      </TableCell>
+                      <TableCell
+                        sx={{
+                          borderBottom: "1px solid black",
+                          borderRight: "1px solid black",
+                          textAlign: "center",
+                          fontSize: "20px",
+                          fontWeight: "bold",
+                        }}
+                      >
+                        Remove Item
+                      </TableCell>
+                    </TableRow>
+                  </TableHead>
+                  `
+                  {cartItems.map((item) => (
+                    <TableRow key={item.product_id}>
+                      <TableCell
+                        sx={{
+                          borderBottom: "1px solid black",
+                          borderRight: "1px solid black",
+                          textAlign: "center",
+                        }}
+                      >
+                        <img
+                          src={
+                            "https://freepngimg.com/thumb/categories/627.png"
+                          }
+                          alt={item.name}
+                          className="cartItemImage"
+                        />
+                      </TableCell>
+                      <TableCell
+                        sx={{
+                          borderBottom: "1px solid black",
+                          borderRight: "1px solid black",
+                        }}
+                      >
+                        <Box className="cartItemName"> {item.name}</Box>
+                      </TableCell>
+                      <TableCell
+                        sx={{
+                          borderBottom: "1px solid black",
+                          borderRight: "1px solid black",
+                        }}
+                      >
+                        <Box className="cartItemPrice">
+                          {"$"} {(item.price * item.quantity).toFixed(2)}
+                        </Box>
+                      </TableCell>
+                      <TableCell
+                        sx={{
+                          borderBottom: "1px solid black",
+                          borderRight: "1px solid black",
+                        }}
+                      >
+                        <Box className="cartItemQuantityBox">
+                          <Button
+                            size="small"
+                            variant="contained"
+                            color="error"
+                            className="cartItemDecreaseQuantityButton"
+                            onClick={() => DecreaseQuantity(item)}
+                          >
+                            -
+                          </Button>
+                          <Box className="cartItemQuantity">
+                            {item.quantity}{" "}
+                          </Box>
+                          <Button
+                            size="small"
+                            className="cartItemIncreaseQuantityButton"
+                            variant="contained"
+                            color="primary"
+                            onClick={() => InreaseQuantity(item)}
+                          >
+                            +
+                          </Button>
+                        </Box>
+                      </TableCell>
+                      <TableCell
+                        sx={{
+                          borderBottom: "1px solid black",
+                          textAlign: "center",
+                        }}
+                      >
+                        <AiFillDelete
+                          className="cartItemRemoveButton"
+                          onClick={() => RemoveProduct(item)}
+                        />
+                      </TableCell>
+                    </TableRow>
+                  ))}
+                </Table>
+              </TableContainer>
+            )}
             {cartItems.length === 0 ? (
               ""
             ) : (
               <Box className="cartTotalPrice">
-                Total Price:
-                <Box className="cartTotalPriceText">$ {totalPrice}</Box>
+                <Box>Total Price:</Box>
+                <Box>$ {totalPrice.toFixed(2)}</Box>
               </Box>
             )}
             {cartItems.length === 0 ? (
@@ -146,7 +257,15 @@ export default function Cart(props) {
                   className="DialogButton"
                   onClick={handleClose}
                 >
-                  Cancel
+                  Continue Shopping
+                </Button>
+
+                <Button
+                  variant="contained"
+                  className="DialogButton"
+                  onClick={handleClearCart}
+                >
+                  Clear Cart
                 </Button>
                 <Button variant="contained">
                   <Link to="/shippingdetails" className="DialogButton">
@@ -158,6 +277,6 @@ export default function Cart(props) {
           </Box>
         </DialogContent>
       </Box>
-    </Dialog>
+    </Modal>
   );
 }

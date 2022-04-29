@@ -105,7 +105,6 @@ export default function Homepage(props) {
                         variant="h6"
                         className="product-list-item-name-text"
                       >
-                        
                         {" "}
                         Product Description:{" "}
                       </Typography>{" "}
