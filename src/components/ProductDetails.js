@@ -10,7 +10,6 @@ import { useState, useEffect } from "react";
 import ReactStars from "react-rating-stars-component";
 
 import axios from "axios";
-import ReactStars from "react-rating-stars-component";
 
 export function ProductDetails() {
   const [open, setOpen] = useState(false);
@@ -70,15 +69,12 @@ export function ProductDetails() {
       <Box className="product-details-Main">
         {pass && (
           <Box className="product-details-container">
-          
             <Box
-            
               component={"img"}
               className="product-details-image"
               src="
           https://freepngimg.com/thumb/categories/627.png"
             />
-            
 
             <Box className="product-details-info">
               <Box className="product-details-title">Title: {pass.name}</Box>
@@ -90,8 +86,14 @@ export function ProductDetails() {
               <Box className="product-details-price-Box">
                 <Box className="product-details-price">Price: </Box>
                 <Box className="product-details-price-value">
-                  {"   "}
-                  {pass.price} $
+                  {"$"}
+                  {pass.price}
+                </Box>{" "}
+                <br />
+                <Box className="product-details-price">Discounted Price: </Box>
+                <Box className="product-details-price-value">
+                  {"$"}
+                  {pass.discounted_price}
                 </Box>
               </Box>
             </Box>
@@ -165,27 +167,25 @@ export function ProductDetails() {
             {review.map((item, index) => {
               return (
                 <Box className="product-reviews" key={index}>
-
-                  {" "}    
+                  {" "}
                   <Box className="product-review-details-header">
-                  <Box className="product-review-details-feedback">
-                    {/* Rating 5/{item.rating} */}
-                    <ReactStars
-                      count={5}
-                      value={item.rating}
-                      size={24}
-                      activeColor="#ffd700"
-                    />
-                  </Box>
-                    <Box className="product-review-createon"> {item.created_on}</Box>
-                  </Box>
-
-                  <Box className="product-review-details-title">
-                      By {item.name}
+                    <Box className="product-review-details-feedback">
+                      <ReactStars
+                        count={5}
+                        value={item.rating}
+                        size={24}
+                        activeColor="#ffd700"
+                      />
                     </Box>
+                    <Box className="product-review-createon">
+                      {" "}
+                      {item.created_on}
+                    </Box>
+                  </Box>
+                  <Box className="product-review-details-title">
+                    By {item.name}
+                  </Box>
                   <Box>{item.review}</Box>
-
-                 
                 </Box>
               );
             })}

@@ -21,6 +21,8 @@ export function Cart(props) {
     updateCartItems([]);
   };
 
+  const getCartItems = JSON.parse(localStorage.getItem("cartItems"));
+
   const InreaseQuantity = (product) => {
     const ProductExists = cartItems.find(
       (item) => item.product_id === product.product_id
@@ -64,7 +66,7 @@ export function Cart(props) {
   };
 
   const totalPrice = cartItems.reduce((total, item) => {
-    return total + item.price * item.quantity;
+    return total + item.discounted_price * item.quantity;
   }, 0);
 
   useEffect(() => {
@@ -148,7 +150,7 @@ export function Cart(props) {
                     </TableRow>
                   </TableHead>
                   `
-                  {cartItems.map((item) => (
+                  {getCartItems.map((item) => (
                     <TableRow key={item.product_id}>
                       <TableCell
                         sx={{
@@ -168,7 +170,8 @@ export function Cart(props) {
                       </TableCell>
                       <TableCell>
                         <Box className="cartItemPrice">
-                          {"$"} {(item.price * item.quantity).toFixed(2)}
+                          {"$"}{" "}
+                          {(item.discounted_price * item.quantity).toFixed(2)}
                         </Box>
                       </TableCell>
                       <TableCell>
@@ -233,18 +236,18 @@ export function Cart(props) {
                 <Button
                   variant="contained"
                   className="DialogButton"
-                  onClick={handleClose}
-                >
-                  Continue Shopping
-                </Button>
-
-                <Button
-                  variant="contained"
-                  className="DialogButton"
                   onClick={handleClearCart}
                 >
                   Clear Cart
                 </Button>
+                <Button
+                  variant="contained"
+                  className="DialogButton"
+                  onClick={handleClose}
+                >
+                  Go Back To Shopping
+                </Button>
+
                 <Button variant="contained">
                   <Link to="/shippingdetails" className="DialogButton">
                     Check Out
