@@ -1,13 +1,13 @@
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
-import { NavBar } from "./components/NavBar";
-import { ShippingDetails } from "./components/Shipping Details";
+import { ShippingDetails } from "./components/ShippingDetailsCases/Shipping Details";
 import { ProductDetails } from "./components/ProductDetails";
+import { HomePage } from "./components/Homepage/homepage";
 import FinishOrder from "./components/FinishOrder";
 function App() {
   return (
     <Router>
       <Routes>
-        <Route path="/" element={<NavBar />} />
+        <Route path="/" element={<HomePage />} />
         <Route path="shippingdetails" element={<ShippingDetails />} />
         <Route path="productdetails/:id" element={<ProductDetails />} />
         <Route path="finishorder" element={<FinishOrder />} />

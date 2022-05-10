@@ -2,11 +2,11 @@ import React, { useEffect, useState } from "react";
 import { Container, Box, Input, Typography } from "@mui/material";
 import { FiShoppingCart } from "react-icons/fi";
 import { SiShopware } from "react-icons/si";
-import Homepage from "./Homepage/homepage";
 import { useDispatch, useSelector } from "react-redux";
 import { Cart } from "./Cart";
 import axios from "axios";
 import { GET_DEFAULT_PRODUCTS_LIST } from "./shopping redux/Actions";
+import { Section } from "./Section/Section";
 import "./Shop.css";
 
 export function NavBar() {
@@ -77,38 +77,38 @@ export function NavBar() {
   return (
     <>
       <Box className="nav-bar-container">
-      <Box className="NavBarMain">
-        <Container>
-          <Box className="NavbarContainer">
-            <Box className="BlinkiflyBox">
-              <SiShopware className="SiShopware" />
-              <Typography variant="span" className="BlinkiflyText">
-                Blinkifly
-              </Typography>
-            </Box>
+        <Box className="NavBarMain">
+          <Container>
+            <Box className="NavbarContainer">
+              <Box className="BlinkiflyBox">
+                <SiShopware className="SiShopware" />
+                <Typography variant="span" className="BlinkiflyText">
+                  Blinkifly
+                </Typography>
+              </Box>
 
-            <Input
-              placeholder="Search"
-              className="InputSearch"
-              value={searchValue}
-              onChange={(e) => setSearchValue(e.target.value)}
-              onKeyDown={(e) => {
-                setSearchValue(e.target.value);
-              }}
-            />
-            <Box className="CartIcon">
-              <FiShoppingCart
-                className="FiShoppingCart"
-                onClick={handleClickOpen}
-                title="Open shopping cart"
+              <Input
+                placeholder="Search"
+                className="InputSearch"
+                value={searchValue}
+                onChange={(e) => setSearchValue(e.target.value)}
+                onKeyDown={(e) => {
+                  setSearchValue(e.target.value);
+                }}
               />
-              <Typography variant="span" className="CartIconText">
-                {cartItems.length === 0 ? "" : cartItems.length}
-              </Typography>
+              <Box className="CartIcon">
+                <FiShoppingCart
+                  className="FiShoppingCart"
+                  onClick={handleClickOpen}
+                  title="Open shopping cart"
+                />
+                <Typography variant="span" className="CartIconText">
+                  {cartItems.length === 0 ? "" : cartItems.length}
+                </Typography>
+              </Box>
             </Box>
-          </Box>
-        </Container>
-      </Box>
+          </Container>
+        </Box>
       </Box>
       <Cart
         cartItems={cartItems}
@@ -116,9 +116,8 @@ export function NavBar() {
         handleClose={handleClose}
         open={open}
       />
-        
-      <Homepage getProducts={getProducts} handleAddProduct={handleAddProduct} />
-     
+
+      <Section getProducts={getProducts} handleAddProduct={handleAddProduct} />
     </>
   );
 }

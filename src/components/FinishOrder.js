@@ -1,7 +1,5 @@
 import { Box, Button, Typography } from "@mui/material";
-import React from "react";
 import { Link } from "react-router-dom";
-import "./Shop.css";
 
 export default function FinishOrder() {
   return (
