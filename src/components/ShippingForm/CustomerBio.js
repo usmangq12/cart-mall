@@ -1,7 +1,7 @@
 import React from "react";
 import { Box, Input, Typography } from "@mui/material";
 
-export function Case0({
+export function CustomerBio({
   validationError,
   setCustomerInformation,
   customerInformation,

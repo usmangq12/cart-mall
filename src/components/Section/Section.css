@@ -17,21 +17,16 @@
 }
 
 .product-list {
-  display: flex;
-  flex-direction: row;
-  flex-wrap: wrap;
-  justify-content: space-between;
-  height: 90vh;
-  overflow-y: scroll;
-  overflow-x: none;
-  width: 100%;
   margin-left: 20%;
   margin-top: 5%;
-  row-gap: 30px;
+  display: grid;
+  grid-template-columns: auto auto auto;
+  gap: 10px;
+  width: auto;
 }
 
 .product-list-item {
-  width: 23%;
+  width: 95%;
   height: 75vh;
   border-radius: 5px;
   text-decoration: none;
@@ -40,7 +35,6 @@
   justify-content: space-between;
   flex-wrap: wrap;
   align-items: center;
-  margin-right: 1rem;
 }
 
 .product-list-item:hover {

@@ -1,4 +1,4 @@
-export const CategoryList = [
+export const categoryList = [
   {
     CategoryName: "French",
     id: 1,

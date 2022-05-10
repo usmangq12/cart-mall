@@ -24,14 +24,14 @@ export function Cart(props) {
   const getCartItems = JSON.parse(localStorage.getItem("cartItems"));
 
   const InreaseQuantity = (product) => {
-    const ProductExists = cartItems.find(
+    const productExists = cartItems.find(
       (item) => item.product_id === product.product_id
     );
-    if (ProductExists) {
+    if (productExists) {
       updateCartItems(
         cartItems.map((item) =>
           item.product_id === product.product_id
-            ? { ...ProductExists, quantity: ProductExists.quantity + 1 }
+            ? { ...productExists, quantity: productExists.quantity + 1 }
             : item
         )
       );
@@ -41,10 +41,10 @@ export function Cart(props) {
   };
 
   const DecreaseQuantity = (product) => {
-    const ProductExists = cartItems.find(
+    const productExists = cartItems.find(
       (item) => item.product_id === product.product_id
     );
-    if (ProductExists.quantity === 1) {
+    if (productExists.quantity === 1) {
       updateCartItems(
         cartItems.filter((item) => item.product_id !== product.product_id)
       );
@@ -52,7 +52,7 @@ export function Cart(props) {
       updateCartItems(
         cartItems.map((item) =>
           item.product_id === product.product_id
-            ? { ...ProductExists, quantity: ProductExists.quantity - 1 }
+            ? { ...productExists, quantity: productExists.quantity - 1 }
             : item
         )
       );

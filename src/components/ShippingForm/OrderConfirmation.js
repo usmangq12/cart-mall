@@ -13,8 +13,8 @@ import {
   TableBody,
 } from "@mui/material";
 
-export function Case3({
-  CartItems,
+export function OrderConfirmation({
+  cartItems,
   customerInformation,
   handleVoucher,
   discountedPrice,
@@ -122,7 +122,7 @@ export function Case3({
                     </TableCell>
                   </TableRow>
                 </TableHead>
-                {CartItems.map((item, index) => (
+                {cartItems.map((item, index) => (
                   <TableBody key={index}>
                     <TableRow>
                       <TableCell>{item.name}</TableCell>

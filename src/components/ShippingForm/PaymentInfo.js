@@ -8,7 +8,7 @@ import {
   Typography,
 } from "@mui/material";
 
-export function Case2({
+export function PaymentInfo({
   validationError,
   customerInformation,
   setCustomerInformation,

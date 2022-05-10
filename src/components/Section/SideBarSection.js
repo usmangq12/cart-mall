@@ -2,7 +2,7 @@ import React from "react";
 import { useDispatch } from "react-redux";
 import { Box, Typography, ListItemButton, ListItemText } from "@mui/material";
 import { GET_PRODUCTS_LIST } from "../shopping redux/Actions";
-import { CategoryList } from "../Constant";
+import { categoryList } from "../Constant";
 
 export function SideBarSection(props) {
   const dispatch = useDispatch();
@@ -10,7 +10,7 @@ export function SideBarSection(props) {
   return (
     <Box className="category-list-item">
       <Typography variant="h4">Categories:</Typography>
-      {CategoryList.map((category) => (
+      {categoryList.map((category) => (
         <ListItemButton
           key={category.id}
           sx={{
