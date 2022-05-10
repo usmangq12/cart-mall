@@ -1,13 +1,12 @@
 import { useState } from "react";
 import { Box, Stepper, Step, Button, StepLabel } from "@mui/material";
 import { Link } from "react-router-dom";
-import { Case0 } from "./Case0";
-import { Case1 } from "./Case1";
-import { Case2 } from "./Case2";
-import { Case3 } from "./Case3";
+import { CustomerBio } from "./CustomerBio";
+import { ShippingInfo } from "./ShippingInfo";
+import { PaymentInfo } from "./PaymentInfo";
+import { OrderConfirmation } from "./OrderConfirmation";
 import { steps } from "../Constant";
 import "./ShippingCases.css";
-
 
 export function ShippingDetails() {
   const [activeStep, setActiveStep] = useState(0);
@@ -24,7 +23,7 @@ export function ShippingDetails() {
     setDiscountedPrice(TotalPrice - 30 / 100);
   };
 
-  const CartItems = JSON.parse(localStorage.getItem("cartItems"));
+  const cartItems = JSON.parse(localStorage.getItem("cartItems"));
 
   const nextStep = () => {
     if (activeStep === 0) {
@@ -80,7 +79,7 @@ export function ShippingDetails() {
     switch (stepIndex) {
       case 0:
         return (
-          <Case0
+          <CustomerBio
             validationError={validationError}
             setCustomerInformation={setCustomerInformation}
             customerInformation={customerInformation}
@@ -89,7 +88,7 @@ export function ShippingDetails() {
 
       case 1:
         return (
-          <Case1
+          <ShippingInfo
             validationError={validationError}
             setCustomerInformation={setCustomerInformation}
             customerInformation={customerInformation}
@@ -98,7 +97,7 @@ export function ShippingDetails() {
 
       case 2:
         return (
-          <Case2
+          <PaymentInfo
             validationError={validationError}
             setCustomerInformation={setCustomerInformation}
             customerInformation={customerInformation}
@@ -106,8 +105,8 @@ export function ShippingDetails() {
         );
       case 3:
         return (
-          <Case3
-            CartItems={CartItems}
+          <OrderConfirmation
+            cartItems={cartItems}
             discountedPrice={discountedPrice}
             handleVoucher={handleVoucher}
             customerInformation={customerInformation}

@@ -2,9 +2,12 @@ import { createStore, applyMiddleware, compose } from "redux";
 
 import createSagaMiddleware from "redux-saga";
 
-import rootReducer from "../shopping reducers/Index.js";
+import rootReducer from "./components/shopping redux/shopping reducers/Index.js";
 
-import { fetchProductsSaga, fetchDefaultProductsSaga } from "../store/Saga.js";
+import {
+  fetchProductsSaga,
+  fetchDefaultProductsSaga,
+} from "./components/shopping redux/store/Saga.js";
 
 const sagaMiddleware = createSagaMiddleware();
 

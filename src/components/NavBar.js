@@ -51,14 +51,14 @@ export function NavBar() {
   }, [cartItems]);
 
   const handleAddProduct = (product) => {
-    const ProductExists = cartItems.find(
+    const productExists = cartItems.find(
       (item) => item.product_id === product.product_id
     );
-    if (ProductExists) {
+    if (productExists) {
       updateCartItems(
         cartItems.map((item) =>
           item.product_id === product.product_id
-            ? { ...ProductExists, quantity: ProductExists.quantity + 1 }
+            ? { ...productExists, quantity: productExists.quantity + 1 }
             : item
         )
       );

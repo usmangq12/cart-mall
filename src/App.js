@@ -1,5 +1,5 @@
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
-import { ShippingDetails } from "./components/ShippingDetailsCases/Shipping Details";
+import { ShippingDetails } from "./components/ShippingForm/Shipping Details";
 import { ProductDetails } from "./components/ProductDetails";
 import { HomePage } from "./components/Homepage/homepage";
 import FinishOrder from "./components/FinishOrder";
